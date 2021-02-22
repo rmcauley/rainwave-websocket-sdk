@@ -19,7 +19,7 @@
   "typedocOptions": {
       "categoryOrder": ["Event Handling", "*", "API Request"],
       "defaultCategory": "API Request",
-      "entryPoints": ["src/index.ts", "src/requestTypes.ts", "src/responseTypes.ts", "src/types/index.ts"],
+      "entryPoints": ["src/index.ts", "src/responseTypes.ts", "src/types/index.ts"],
       "excludeExternals": true,
       "excludePrivate": true,
       "excludeProtected": true,
