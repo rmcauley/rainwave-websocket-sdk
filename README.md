@@ -1,2 +1,3 @@
 # rainwave-sdk
-Rainwave Typescript SDK
+
+Rainwave Websocket SDK
