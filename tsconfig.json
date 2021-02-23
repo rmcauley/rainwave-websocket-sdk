@@ -27,7 +27,7 @@
       "highlightTheme": "dark-plus",
       "includeVersion": true,
       "name": "Rainwave Websocket SDK",
-      "out": "dist/doc",
+      "out": "docs",
       "readme": null
   }
 }
