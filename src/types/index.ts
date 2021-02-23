@@ -75,6 +75,7 @@ import { UnratedSongs, UnratedSong } from "./unratedSongs";
 import { User } from "./user";
 import { UserRecentVotes, UserRecentVote } from "./userRecentVotes";
 import { VoteResult } from "./voteResult";
+import { RatingUser, ValidatedRatingUser } from "./ratingUser";
 
 export {
   Album,
@@ -121,6 +122,8 @@ export {
   RainwaveEventSongArtist,
   RainwaveSDKErrorClear,
   RainwaveTime,
+  RatingUser,
+  ValidatedRatingUser,
   RateResult,
   RedownloadM3u,
   Relay,

@@ -17,7 +17,7 @@
     "target": "ES2015"
   },
   "typedocOptions": {
-      "categoryOrder": ["Event Handling", "*", "API Request"],
+      "categoryOrder": ["Connection", "Event Handling", "*", "API Request"],
       "defaultCategory": "API Request",
       "entryPoints": ["src/index.ts", "src/responseTypes.ts", "src/types/index.ts"],
       "excludeExternals": true,

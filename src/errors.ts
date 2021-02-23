@@ -5,4 +5,11 @@ class RainwaveSDKUsageError extends Error {
   }
 }
 
-export { RainwaveSDKUsageError };
+class RainwaveSDKInvalidRatingError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "RainwaveSDKInvalidRatingError";
+  }
+}
+
+export { RainwaveSDKUsageError, RainwaveSDKInvalidRatingError };

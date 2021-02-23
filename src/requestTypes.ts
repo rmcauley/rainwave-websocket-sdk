@@ -1,4 +1,5 @@
 import { RainwaveResponseTypes } from "./responseTypes";
+import { RatingUser } from "./types/ratingUser";
 
 interface RainwavePagedParams extends Record<string, number | undefined> {
   per_page?: number;
@@ -13,9 +14,14 @@ interface BaseRequest {
 interface AlbumRequest extends BaseRequest {
   response: { album: RainwaveResponseTypes["album"] };
   params: {
+    /** ID of album to load from API. */
     id: number;
+    /**
+     * How songs in the album will be sorted.
+     * - `undefined | null`: alphabetically.
+     * - `added_on`: when song was added to Rainwave.
+     * */
     sort?: "added_on";
-    allCategories?: false;
   };
 }
 
@@ -25,9 +31,6 @@ interface AllAlbumsByCursorRequest extends BaseRequest {
 
 interface AllArtistsRequest extends BaseRequest {
   response: { all_artists: RainwaveResponseTypes["all_artists"] };
-  params: {
-    noSearchable: true;
-  };
 }
 
 interface AllFavesRequest extends BaseRequest {
@@ -37,15 +40,16 @@ interface AllFavesRequest extends BaseRequest {
 
 interface AllGroupsRequest extends BaseRequest {
   response: { all_groups: RainwaveResponseTypes["all_groups"] };
-  params: {
-    noSearchable: true;
-    all?: false;
-  };
 }
 
 interface AllSongsRequest extends BaseRequest {
   response: { all_songs: RainwaveResponseTypes["all_songs"] };
   params: RainwavePagedParams & {
+    /**
+     * How songs in the album will be sorted.
+     * - `undefined | null`: alphabetically.
+     * - `rating`: rating, descending.
+     * */
     order?: "rating";
   };
 }
@@ -53,6 +57,7 @@ interface AllSongsRequest extends BaseRequest {
 interface ArtistRequest extends BaseRequest {
   response: { artist: RainwaveResponseTypes["artist"] };
   params: {
+    /** ID of Artist to load from the API. */
     id: number;
   };
 }
@@ -63,7 +68,9 @@ interface AuthRequest extends BaseRequest {
     wserror?: RainwaveResponseTypes["wserror"];
   };
   params: {
+    /** ID of User to authenticate as. */
     user_id: number;
+    /** API key obtained through auth flow. */
     key: string;
   };
 }
@@ -71,6 +78,7 @@ interface AuthRequest extends BaseRequest {
 interface CheckSchedCurrentId extends BaseRequest {
   response: Record<string, never>;
   params: {
+    /** Last {@link RainwaveEvent} ID that you have last seen. */
     sched_id: number;
   };
 }
@@ -78,7 +86,8 @@ interface CheckSchedCurrentId extends BaseRequest {
 interface ClearRatingRequest extends BaseRequest {
   response: { clear_rating: RainwaveResponseTypes["rate_result"] };
   params: {
-    songId: number;
+    /** Song ID of rating to clear. */
+    song_id: number;
   };
 }
 
@@ -95,14 +104,17 @@ interface ClearRequestsOnCooldownRequest extends BaseRequest {
 interface DeleteRequestRequest extends BaseRequest {
   response: { requests: RainwaveResponseTypes["requests"] };
   params: {
-    songId: number;
+    /** ID of Song in user's RequestQueue to delete. */
+    song_id: number;
   };
 }
 
 interface FaveAlbumRequest extends BaseRequest {
   response: { fave_album: RainwaveResponseTypes["rate_result"] };
   params: {
-    albumId: number;
+    /** ID of Album to update. */
+    album_id: number;
+    /** `true` to set album as a fave, `false` to un-fave. */
     fave: boolean;
   };
 }
@@ -110,7 +122,9 @@ interface FaveAlbumRequest extends BaseRequest {
 interface FaveAllSongsRequest extends BaseRequest {
   response: { fave_all_songs: RainwaveResponseTypes["rate_result"] };
   params: {
-    albumId: number;
+    /** ID of Album to update.  All songs in this Album will be updated. */
+    album_id: number;
+    /** `true` to set all Songs in the Album as faves, `false` to un-fave all Songs in the Album. */
     fave: boolean;
   };
 }
@@ -118,7 +132,9 @@ interface FaveAllSongsRequest extends BaseRequest {
 interface FaveSongRequest extends BaseRequest {
   response: { fave_song: RainwaveResponseTypes["rate_result"] };
   params: {
-    songId: number;
+    /** ID of Song to update. */
+    song_id: number;
+    /** `true` to set Song as a fave, `false` to un-fave. */
     fave: boolean;
   };
 }
@@ -126,6 +142,7 @@ interface FaveSongRequest extends BaseRequest {
 interface GroupRequest extends BaseRequest {
   response: { group: RainwaveResponseTypes["group"] };
   params: {
+    /** ID of Group to load.  */
     id: number;
   };
 }
@@ -137,6 +154,7 @@ interface InfoAllRequest extends BaseRequest {
 interface ListenerRequest extends BaseRequest {
   response: { listener: RainwaveResponseTypes["listener"] };
   params: {
+    /** ID of User to load. */
     id: number;
   };
 }
@@ -144,6 +162,7 @@ interface ListenerRequest extends BaseRequest {
 interface OrderRequestsRequest extends BaseRequest {
   response: { order_requests: RainwaveResponseTypes["requests"] };
   params: {
+    /** Ordered array of all Song IDs in User's Requests that will determine the new order. */
     order: number[];
   };
 }
@@ -173,15 +192,18 @@ interface PlaybackHistoryRequest extends BaseRequest {
 interface RateRequest extends BaseRequest {
   response: { rate: RainwaveResponseTypes["rate_result"] };
   params: {
+    /** ID of Song to rate. */
     songId: number;
-    rating: 1.0 | 1.5 | 2.0 | 2.5 | 3.0 | 4.5 | 5.0;
+    /** Rating to set the song to.  Values are limited - see {@link RatingUser}.  Recommended to use {@link getValidatedRatingUser}. */
+    rating: RatingUser;
   };
 }
 
 interface RequestRequest extends BaseRequest {
   response: { requests: RainwaveResponseTypes["requests"] };
   params: {
-    songId: number;
+    /** ID of Song to request. */
+    song_id: number;
   };
 }
 
@@ -191,6 +213,7 @@ interface RequestFavoritedSongsRequest extends BaseRequest {
     requests: RainwaveResponseTypes["requests"];
   };
   params: {
+    /** Maximum number of songs to add to user's request queue.  Not providing this will fill the entire user's request queue. */
     limit?: number;
   };
 }
@@ -205,6 +228,7 @@ interface RequestUnratedSongsRequest extends BaseRequest {
     requests: RainwaveResponseTypes["requests"];
   };
   params: {
+    /** Maximum number of songs to add to user's request queue.  Not providing this will fill the entire user's request queue. */
     limit?: number;
   };
 }
@@ -216,13 +240,17 @@ interface SearchRequest extends BaseRequest {
     songs: RainwaveResponseTypes["songs"];
   };
   params: {
+    /** Term to search for.  Must be three letters or longer. */
     search: string;
   };
 }
 
 interface SongRequest extends BaseRequest {
   response: { song: RainwaveResponseTypes["song"] };
-  id: number;
+  params: {
+    /** ID of Song to load from API. */
+    id: number;
+  };
 }
 
 interface StationSongCountRequest extends BaseRequest {
@@ -270,7 +298,8 @@ interface UserRequestedHistoryRequest extends BaseRequest {
 interface VoteRequest extends BaseRequest {
   response: { vote: RainwaveResponseTypes["vote_result"] };
   params: {
-    entryId: number;
+    /** Entry ID of {@link RainwaveEventSong} to vote for. */
+    entry_id: number;
   };
 }
 
