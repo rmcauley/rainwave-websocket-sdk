@@ -21,13 +21,13 @@ export interface Request extends SongBase {
   elec_blocked_by: ElecBlockedBy;
   elec_blocked_num: number | null;
   elec_blocked: boolean;
-  /** Is the song still available on the Rainwave? */
+  /** Does the song still exist on the Rainwave? */
   good: boolean;
   order: number;
   origin_sid: Station;
   request_id: number;
   sid: Station;
-  /** Is the song still available on this particular station? */
+  /** Does the song still exist on the {@link sid}? */
   valid: boolean;
 }
 
