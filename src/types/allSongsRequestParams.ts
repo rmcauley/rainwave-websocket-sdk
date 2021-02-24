@@ -1,4 +1,4 @@
-import { RainwavePagedParams } from ".";
+import { RainwavePagedParams } from "./rainwavePagedParams";
 
 export interface AllSongsRequestParams extends RainwavePagedParams {
   /**

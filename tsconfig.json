@@ -26,6 +26,7 @@
       "excludeProtected": true,
       "includeVersion": true,
       "name": "Rainwave Websocket SDK",
-      "out": "docs"
+      "out": "docs",
+      "readme": "./DOCS.md"
   }
 }
