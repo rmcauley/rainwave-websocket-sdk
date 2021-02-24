@@ -1,0 +1,6 @@
+{
+  "editor.formatOnSave": true,
+  "prettier.endOfLine": "lf",
+  "prettier.printWidth": 90,
+  "files.insertFinalNewline": true,
+}

@@ -7,7 +7,7 @@ import { ArtistInLibrary } from "./types/artistInLibrary";
 import { ArtistWithSongs } from "./types/artistWithSongs";
 import { BooleanResult } from "./types/booleanResult";
 import { RainwaveError } from "./types/error";
-import { RainwaveSDKErrorClear } from "./types/errorClear";
+import { RainwaveSDKErrorClear } from "./types/sdkErrorClear";
 import { FaveAlbumResult } from "./types/faveAlbumResult";
 import { FaveAllSongsResult } from "./types/faveAllSongsResult";
 import { FaveSong } from "./types/faveSong";
@@ -37,9 +37,11 @@ import { UnratedSongs } from "./types/unratedSongs";
 import { User } from "./types/user";
 import { UserRecentVotes } from "./types/userRecentVotes";
 import { VoteResult } from "./types/voteResult";
+import { AlbumDiff } from "./types";
 
 export interface RainwaveResponseTypes {
   album: AlbumWithDetail;
+  album_diff: AlbumDiff;
   albums: SearchResult["albums"];
   all_albums_by_cursor: unknown;
   all_artists: ArtistInLibrary[];

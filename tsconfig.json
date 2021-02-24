@@ -19,15 +19,13 @@
   "typedocOptions": {
       "categoryOrder": ["Connection", "Event Handling", "*", "API Request"],
       "defaultCategory": "API Request",
+      "disableSources": true,
       "entryPoints": ["src/index.ts", "src/responseTypes.ts", "src/types/index.ts"],
       "excludeExternals": true,
       "excludePrivate": true,
       "excludeProtected": true,
-      "excludeInternal": true,
-      "highlightTheme": "dark-plus",
       "includeVersion": true,
       "name": "Rainwave Websocket SDK",
-      "out": "docs",
-      "readme": null
+      "out": "docs"
   }
 }

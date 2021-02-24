@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Traceback | Rainwave Websocket SDK - v0.0.1</title>
+	<title>AllSongsRequestParams | Rainwave Websocket SDK - v0.0.1</title>
 	<meta name="description" content="Documentation for Rainwave Websocket SDK - v0.0.1">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,28 +56,26 @@
 					<a href="../modules/types.html">types</a>
 				</li>
 				<li>
-					<a href="types.traceback.html">Traceback</a>
+					<a href="types.allsongsrequestparams.html">AllSongsRequestParams</a>
 				</li>
 			</ul>
-			<h1>Interface Traceback</h1>
+			<h1>Interface AllSongsRequestParams</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Rainwave API Python stack trace as a string.</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Traceback</span>
+						<a href="types.rainwavepagedparams.html" class="tsd-signature-type" data-tsd-kind="Interface">RainwavePagedParams</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">AllSongsRequestParams</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -88,7 +86,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="types.traceback.html#traceback" class="tsd-kind-icon">traceback</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="types.allsongsrequestparams.html#order" class="tsd-kind-icon">order</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="types.allsongsrequestparams.html#page_start" class="tsd-kind-icon">page_<wbr>start</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="types.allsongsrequestparams.html#per_page" class="tsd-kind-icon">per_<wbr>page</a></li>
 							</ul>
 						</section>
 					</div>
@@ -97,10 +97,35 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="traceback" class="tsd-anchor"></a>
-					<h3>traceback</h3>
-					<div class="tsd-signature tsd-kind-icon">traceback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="order" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> order</h3>
+					<div class="tsd-signature tsd-kind-icon">order<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;rating&quot;</span></div>
 					<aside class="tsd-sources">
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>How songs in the album will be sorted.</p>
+							<ul>
+								<li><code>undefined | null</code>: alphabetically.</li>
+								<li><code>rating</code>: rating, descending.</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="page_start" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> page_<wbr>start</h3>
+					<div class="tsd-signature tsd-kind-icon">page_<wbr>start<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="types.rainwavepagedparams.html">RainwavePagedParams</a>.<a href="types.rainwavepagedparams.html#page_start">page_start</a></p>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="per_page" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> per_<wbr>page</h3>
+					<div class="tsd-signature tsd-kind-icon">per_<wbr>page<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="types.rainwavepagedparams.html">RainwavePagedParams</a>.<a href="types.rainwavepagedparams.html#per_page">per_page</a></p>
 					</aside>
 				</section>
 			</section>
@@ -127,10 +152,16 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="types.traceback.html" class="tsd-kind-icon">Traceback</a>
+						<a href="types.allsongsrequestparams.html" class="tsd-kind-icon">All<wbr>Songs<wbr>Request<wbr>Params</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="types.traceback.html#traceback" class="tsd-kind-icon">traceback</a>
+								<a href="types.allsongsrequestparams.html#order" class="tsd-kind-icon">order</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="types.allsongsrequestparams.html#page_start" class="tsd-kind-icon">page_<wbr>start</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="types.allsongsrequestparams.html#per_page" class="tsd-kind-icon">per_<wbr>page</a>
 							</li>
 						</ul>
 					</li>

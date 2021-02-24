@@ -1,7 +1,9 @@
+import { Album, SongBase } from ".";
+
 export interface UnratedSong {
-  album_name: string;
-  id: number;
-  title: string;
+  album_name: Album["name"];
+  id: SongBase["id"];
+  title: SongBase["title"];
 }
 
 export type UnratedSongs = UnratedSong[];

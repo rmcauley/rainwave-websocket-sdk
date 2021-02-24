@@ -12,9 +12,7 @@ export interface RainwaveEventSongArtist extends Artist {
 }
 
 export interface RainwaveEventSong extends SongBase {
-  albums: [
-    Pick<Album, "id" | "rating" | "art" | "name" | "rating_user" | "fave">
-  ];
+  albums: [Pick<Album, "id" | "rating" | "art" | "name" | "rating_user" | "fave">];
   artists: RainwaveEventSongArtist[];
   cool: boolean;
   elec_blocked_by: ElecBlockedBy;
@@ -29,7 +27,7 @@ export interface RainwaveEventSong extends SongBase {
   origin_sid: Station;
   rating_allowed: boolean;
   rating_count: number;
-  request_id?: number;
+  request_id?: number | null;
   request_count: number;
   sid: Station;
 }
@@ -37,7 +35,7 @@ export interface RainwaveEventSong extends SongBase {
 export interface RainwaveEvent {
   id: number;
   start: RainwaveTime;
-  start_actual: RainwaveTime;
+  start_actual: RainwaveTime | null;
   end: RainwaveTime;
   type: "Election" | "OneUpProducer" | "PVPElectionProducer";
   name: string | null;
@@ -46,6 +44,7 @@ export interface RainwaveEvent {
   voting_allowed: boolean;
   used: boolean;
   length: number;
+  /** @internal */
   core_event_id: number | null;
   songs: RainwaveEventSong[];
 }

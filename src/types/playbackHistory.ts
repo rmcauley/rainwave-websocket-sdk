@@ -1,15 +1,17 @@
+import { Album, SongBase } from ".";
 import { RainwaveTime } from "./time";
 
 export interface PlaybackHistoryEntry {
-  album_id: number;
-  album_name: string;
+  album_id: Album["id"];
+  album_name: Album["name"];
+  /** @deprecated */
   artist_parseable: string;
-  fave: boolean | null;
-  id: number;
-  rating: number;
-  rating_user: number | null;
+  fave: SongBase["fave"];
+  id: SongBase["id"];
+  rating: SongBase["rating"];
+  rating_user: SongBase["rating_user"];
   song_played_at: RainwaveTime;
-  title: string;
+  title: SongBase["title"];
 }
 
 export type PlaybackHistory = PlaybackHistoryEntry[];

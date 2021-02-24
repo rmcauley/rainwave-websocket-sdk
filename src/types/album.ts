@@ -1,11 +1,15 @@
+import { RatingUser } from ".";
+import { AlbumArt } from "./albumArt";
 import { RainwaveTime } from "./time";
 
 export interface Album {
   added_on: RainwaveTime;
-  art: string | null;
+  art: AlbumArt;
   cool_lowest: RainwaveTime;
-  cool_multiply: number;
-  cool_override: number | null;
+  /** @internal */
+  cool_multiply?: number;
+  /** @internal */
+  cool_override?: number | null;
   cool: boolean;
   fave_count: number;
   fave: boolean | null;
@@ -13,7 +17,7 @@ export interface Album {
   name: string;
   played_last: RainwaveTime;
   rating_count: number;
-  rating_user: number | null;
+  rating_user: RatingUser;
   rating: number | null;
   request_count: number;
   song_count: number;

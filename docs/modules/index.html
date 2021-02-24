@@ -88,31 +88,28 @@
 					<a name="getvalidatedratinguser" class="tsd-anchor"></a>
 					<h3>get<wbr>Validated<wbr>Rating<wbr>User</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Validated<wbr>Rating<wbr>User<span class="tsd-signature-symbol">(</span>ratingUser<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="types.html#validatedratinguser" class="tsd-signature-type" data-tsd-kind="Type alias">ValidatedRatingUser</a></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Validated<wbr>Rating<wbr>User<span class="tsd-signature-symbol">(</span>ratingUser<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="types.html#validatedsongratinguser" class="tsd-signature-type" data-tsd-kind="Type alias">ValidatedSongRatingUser</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/utils/validatedRatingUser.ts#L34">utils/validatedRatingUser.ts:34</a></li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Takes a number and returns a type-guarded <a href="types.html#validatedratinguser">ValidatedRatingUser</a>.</p>
+									<p>Takes a number and returns a type-guarded {@link ValidatedRatingUser}.</p>
 								</div>
-								<p>Numbers below 1 are changed to 1.  Numbers above 5 are changed to 5.  Numbers in-between are rounded to their closest value in <a href="types.html#validatedratinguser">ValidatedRatingUser</a>.</p>
+								<p>Numbers below 1 are changed to 1.  Numbers above 5 are changed to 5.  Numbers in-between are rounded to their closest value in {@link ValidatedRatingUser}.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>ratingUser: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>number</p>
+										<p>Any number to be clamped to a valid Rainwave rating between 1 and 5.</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="types.html#validatedratinguser" class="tsd-signature-type" data-tsd-kind="Type alias">ValidatedRatingUser</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="types.html#validatedsongratinguser" class="tsd-signature-type" data-tsd-kind="Type alias">ValidatedSongRatingUser</a></h4>
 						</li>
 					</ul>
 				</section>

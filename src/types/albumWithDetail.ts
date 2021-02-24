@@ -7,12 +7,16 @@ import { RainwaveTime } from "./time";
 export interface SongOnAlbum extends SongBase {
   origin_sid: Station;
   added_on: RainwaveTime;
+  /** @internal */
   cool_multiply?: number;
+  /** @internal */
   cool_override?: number | null;
   requestable: boolean;
   cool: boolean;
-  cool_end: number;
-  request_only_end: number;
+  cool_end: RainwaveTime;
+  /** @internal */
+  request_only_end: RainwaveTime;
+  /** @internal */
   request_only: boolean;
 }
 

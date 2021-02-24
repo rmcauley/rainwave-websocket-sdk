@@ -7,15 +7,6 @@ import { RainwaveResponseTypes } from "./responseTypes";
 import { RainwaveError } from "./types/error";
 import { Station } from "./types/station";
 
-interface RainwaveOptions {
-  userId: number;
-  apiKey: string;
-  sid: Station;
-  url: string;
-  debug: (msg: string | Error) => void;
-  onSocketError: (event: Event) => void;
-}
-
 const PING_INTERVAL = 45000;
 const WEBSOCKET_CHECK_TIMEOUT_MS = 3000;
 const DEFAULT_RECONNECT_TIMEOUT = 500;
@@ -42,10 +33,15 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
   private _requestQueue: RainwaveRequest<keyof RainwaveRequests>[] = [];
   private _sentRequests: RainwaveRequest<keyof RainwaveRequests>[] = [];
 
-  constructor(
-    options: Partial<RainwaveOptions> &
-      Pick<RainwaveOptions, "userId" | "apiKey" | "sid">
-  ) {
+  constructor(options: {
+    userId: number;
+    apiKey: string;
+    sid: Station;
+    /** @defaultValue "wss://rainwave.cc/api4/websocket/" */
+    url?: string;
+    debug?: (msg: string | Error) => void;
+    onSocketError?: (event: Event) => void;
+  }) {
     super();
 
     this._userId = options.userId;
@@ -87,8 +83,7 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
       WEBSOCKET_CHECK_TIMEOUT_MS
     ) as unknown) as number;
 
-    const socket =
-      nodeSocket || new WebSocket(`${this._url}/websocket/${this._sid}`);
+    const socket = nodeSocket || new WebSocket(`${this._url}/websocket/${this._sid}`);
     socket.onmessage = this._onMessage.bind(this);
     socket.onclose = this._onSocketClose.bind(this);
     socket.onerror = this._onSocketError.bind(this);
@@ -120,9 +115,7 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
 
   private _socketSend(message: unknown): void {
     if (!this._socket) {
-      throw new RainwaveSDKUsageError(
-        "Attempted to send to a disconnected socket."
-      );
+      throw new RainwaveSDKUsageError("Attempted to send to a disconnected socket.");
     }
     let jsonmsg: string;
     try {
@@ -315,10 +308,7 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     if (STATELESS_REQUESTS.indexOf(request.action) === -1) {
       request.messageId = this._getNextRequestId();
       if (this._sentRequests.length > MAX_QUEUED_REQUESTS) {
-        this._sentRequests.splice(
-          0,
-          this._sentRequests.length - MAX_QUEUED_REQUESTS
-        );
+        this._sentRequests.splice(0, this._sentRequests.length - MAX_QUEUED_REQUESTS);
       }
     }
 
@@ -333,9 +323,7 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     this._sentRequests.push(request);
   }
 
-  private _onRequestTimeout(
-    request: RainwaveRequest<keyof RainwaveRequests>
-  ): void {
+  private _onRequestTimeout(request: RainwaveRequest<keyof RainwaveRequests>): void {
     if (this._socketTimeoutTimer) {
       this._socketTimeoutTimer = null;
       this._requestQueue.unshift(request);
@@ -378,6 +366,11 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
 
   // API calls ***********************************************************************************************
 
+  /**
+   * Get detailed information about an album, including a list of songs in the album.
+   *
+   * @api4 album
+   */
   album(
     params: RainwaveRequests["album"]["params"]
   ): Promise<RainwaveRequests["album"]["response"]> {
@@ -393,38 +386,47 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     });
   }
 
-  allAlbumsByCursor(): Promise<
-    RainwaveRequests["all_albums_by_cursor"]["response"]
-  > {
+  /**
+   * Gets a list of all albums on the server by page.
+   *
+   * @api4 all_albums_by_cursor
+   */
+  allAlbumsByCursor(): Promise<RainwaveRequests["all_albums_by_cursor"]["response"]> {
     return new Promise((resolve, reject) => {
       this._request(
         new RainwaveRequest(
           "all_albums_by_cursor",
           { noSearchable: true },
-          (data) =>
-            resolve(
-              data as RainwaveRequests["all_albums_by_cursor"]["response"]
-            ),
+          (data) => resolve(data as RainwaveRequests["all_albums_by_cursor"]["response"]),
           reject
         )
       );
     });
   }
 
+  /**
+   * Gets all artists from Rainwave in a single page.
+   *
+   * @api4 all_artists
+   */
   allArtists(): Promise<RainwaveRequests["all_artists"]["response"]> {
     return new Promise((resolve, reject) => {
       this._request(
         new RainwaveRequest(
           "all_artists",
           { noSearchable: true },
-          (data) =>
-            resolve(data as RainwaveRequests["all_artists"]["response"]),
+          (data) => resolve(data as RainwaveRequests["all_artists"]["response"]),
           reject
         )
       );
     });
   }
 
+  /**
+   * Get all songs that have been faved by the user by page.
+   *
+   * @api4 all_faves
+   */
   allFaves(): Promise<RainwaveRequests["all_faves"]["response"]> {
     return new Promise((resolve, reject) => {
       this._request(
@@ -438,6 +440,11 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     });
   }
 
+  /**
+   * Get a list of all song groups on the station playlist in a single page.
+   *
+   * @api4 all_groups
+   */
   allGroups(): Promise<RainwaveRequests["all_groups"]["response"]> {
     return new Promise((resolve, reject) => {
       this._request(
@@ -451,6 +458,11 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     });
   }
 
+  /**
+   * Gets every song including a user's ratings by page.
+   *
+   * @api4 all_songs
+   */
   allSongs(
     params: RainwaveRequests["all_songs"]["params"]
   ): Promise<RainwaveRequests["all_songs"]["response"]> {
@@ -466,6 +478,11 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     });
   }
 
+  /**
+   * Get detailed information about an artist.
+   *
+   * @api4 artist
+   */
   artist(
     params: RainwaveRequests["artist"]["params"]
   ): Promise<RainwaveRequests["artist"]["response"]> {
@@ -481,6 +498,11 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     });
   }
 
+  /**
+   * Remove a user's song rating.
+   *
+   * @api4 clear_rating
+   */
   clearRating(
     params: RainwaveRequests["clear_rating"]["params"]
   ): Promise<RainwaveRequests["clear_rating"]["response"]> {
@@ -489,28 +511,36 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
         new RainwaveRequest(
           "clear_rating",
           params,
-          (data) =>
-            resolve(data as RainwaveRequests["clear_rating"]["response"]),
+          (data) => resolve(data as RainwaveRequests["clear_rating"]["response"]),
           reject
         )
       );
     });
   }
 
+  /**
+   * Clears all requests from the user's queue.
+   *
+   * @api4 clear_requests
+   */
   clearRequests(): Promise<RainwaveRequests["clear_requests"]["response"]> {
     return new Promise((resolve, reject) => {
       this._request(
         new RainwaveRequest(
           "clear_requests",
           {},
-          (data) =>
-            resolve(data as RainwaveRequests["clear_requests"]["response"]),
+          (data) => resolve(data as RainwaveRequests["clear_requests"]["response"]),
           reject
         )
       );
     });
   }
 
+  /**
+   * Clears all requests from the user's queue that are on a cooldown of 20 minutes or more.
+   *
+   * @api4 clear_requests_on_cooldown
+   */
   clearRequestsOnCooldown(): Promise<
     RainwaveRequests["clear_requests_on_cooldown"]["response"]
   > {
@@ -520,15 +550,18 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
           "clear_requests_on_cooldown",
           {},
           (data) =>
-            resolve(
-              data as RainwaveRequests["clear_requests_on_cooldown"]["response"]
-            ),
+            resolve(data as RainwaveRequests["clear_requests_on_cooldown"]["response"]),
           reject
         )
       );
     });
   }
 
+  /**
+   * Removes a request from the user's queue.
+   *
+   * @api4 delete_request
+   */
   deleteRequest(
     params: RainwaveRequests["delete_request"]["params"]
   ): Promise<RainwaveRequests["delete_request"]["response"]> {
@@ -537,14 +570,18 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
         new RainwaveRequest(
           "delete_requests",
           params,
-          (data) =>
-            resolve(data as RainwaveRequests["delete_request"]["response"]),
+          (data) => resolve(data as RainwaveRequests["delete_request"]["response"]),
           reject
         )
       );
     });
   }
 
+  /**
+   * Fave or un-fave an album, specific to the station the request is being made on.
+   *
+   * @api4 fave_album
+   */
   faveAlbum(
     params: RainwaveRequests["fave_album"]["params"]
   ): Promise<RainwaveRequests["fave_album"]["response"]> {
@@ -560,6 +597,11 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     });
   }
 
+  /**
+   * Faves or un-faves all songs in an album. Only songs on the station the websocket is conneted to will be faved.
+   *
+   * @api4 fave_all_songs
+   */
   faveAllSongs(
     params: RainwaveRequests["fave_all_songs"]["params"]
   ): Promise<RainwaveRequests["fave_all_songs"]["response"]> {
@@ -568,14 +610,18 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
         new RainwaveRequest(
           "fave_all_songs",
           params,
-          (data) =>
-            resolve(data as RainwaveRequests["fave_all_songs"]["response"]),
+          (data) => resolve(data as RainwaveRequests["fave_all_songs"]["response"]),
           reject
         )
       );
     });
   }
 
+  /**
+   * Fave or un-fave a song.
+   *
+   * @api4 fave_song
+   */
   faveSong(
     params: RainwaveRequests["fave_song"]["params"]
   ): Promise<RainwaveRequests["fave_song"]["response"]> {
@@ -591,6 +637,11 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     });
   }
 
+  /**
+   * Get detailed information about a song group.
+   *
+   * @api4 group
+   */
   group(
     params: RainwaveRequests["group"]["params"]
   ): Promise<RainwaveRequests["group"]["response"]> {
@@ -606,6 +657,11 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     });
   }
 
+  /**
+   * Returns a basic dict containing rudimentary information on what is currently playing on all stations.
+   *
+   * @api4 info_all
+   */
   infoAll(): Promise<RainwaveRequests["info_all"]["response"]> {
     return new Promise((resolve, reject) => {
       this._request(
@@ -619,6 +675,11 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     });
   }
 
+  /**
+   * Gets detailed information, such as favourite albums and rating histogram, on a particular user.
+   *
+   * @api4 listener
+   */
   listener(
     params: RainwaveRequests["listener"]["params"]
   ): Promise<RainwaveRequests["listener"]["response"]> {
@@ -634,6 +695,11 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     });
   }
 
+  /**
+   * Change the order of requests in the user's queue. Submit a comma-separated list of Song IDs, in desired order.
+   *
+   * @api4 order_requests
+   */
   orderRequests(
     params: RainwaveRequests["order_requests"]["params"]
   ): Promise<RainwaveRequests["order_requests"]["response"]> {
@@ -642,46 +708,65 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
         new RainwaveRequest(
           "order_requests",
           params,
-          (data) =>
-            resolve(data as RainwaveRequests["order_requests"]["response"]),
+          (data) => resolve(data as RainwaveRequests["order_requests"]["response"]),
           reject
         )
       );
     });
   }
 
-  pauseRequestQueue(): Promise<
-    RainwaveRequests["pause_request_queue"]["response"]
-  > {
+  /**
+   * Stops the user from having their request queue processed while they're listening. Will remove them from the request line.
+   *
+   * @api4 pause_request_queue
+   */
+  pauseRequestQueue(): Promise<RainwaveRequests["pause_request_queue"]["response"]> {
     return new Promise((resolve, reject) => {
       this._request(
         new RainwaveRequest(
           "pause_request_queue",
           {},
-          (data) =>
-            resolve(
-              data as RainwaveRequests["pause_request_queue"]["response"]
-            ),
+          (data) => resolve(data as RainwaveRequests["pause_request_queue"]["response"]),
           reject
         )
       );
     });
   }
 
+  /**
+   * Get the last 100 songs that played on the station.
+   *
+   * @api4 playback_history
+   */
   playbackHistory(): Promise<RainwaveRequests["playback_history"]["response"]> {
     return new Promise((resolve, reject) => {
       this._request(
         new RainwaveRequest(
           "playback_history",
           {},
-          (data) =>
-            resolve(data as RainwaveRequests["playback_history"]["response"]),
+          (data) => resolve(data as RainwaveRequests["playback_history"]["response"]),
           reject
         )
       );
     });
   }
 
+  /**
+   * Rate a song.
+   *
+   * For new users, the user must have been tuned in for this song to rate it, or they
+   * must be tuned in if it's the currently playing song.
+   *
+   * For users who have rated 100 songs, they are allowed to rate any song at any time.
+   *
+   * Songs that are part of {@link RainwaveEventSong} have a `rating_allowed` property
+   * you can use to check before submission if the user can rate.  For other songs, you
+   * can use the `rate_anything` property of {@link User} to check before submission.
+   * The API will return a {@link RainwaveError} if the user is not allowed to rate
+   * the song yet.
+   *
+   * @api4 rate
+   */
   rate(
     params: RainwaveRequests["rate"]["params"]
   ): Promise<RainwaveRequests["rate"]["response"]> {
@@ -697,6 +782,11 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     });
   }
 
+  /**
+   * Submits a request for a song.
+   *
+   * @api4 request
+   */
   request(
     params: RainwaveRequests["request"]["params"]
   ): Promise<RainwaveRequests["request"]["response"]> {
@@ -712,6 +802,11 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     });
   }
 
+  /**
+   * Fills the user's request queue with favorited songs.
+   *
+   * @api4 request_favorited_songs
+   */
   requestFavoritedSongs(
     params: RainwaveRequests["request_favorited_songs"]["params"]
   ): Promise<RainwaveRequests["request_favorited_songs"]["response"]> {
@@ -721,29 +816,37 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
           "request_favorited_songs",
           params,
           (data) =>
-            resolve(
-              data as RainwaveRequests["request_favorited_songs"]["response"]
-            ),
+            resolve(data as RainwaveRequests["request_favorited_songs"]["response"]),
           reject
         )
       );
     });
   }
 
+  /**
+   * Gives a list of who is waiting in line to make a request on the given station,
+   * plus their current top-requested song if they have one available.
+   *
+   * @api4 request_line
+   */
   requestLine(): Promise<RainwaveRequests["request_line"]["response"]> {
     return new Promise((resolve, reject) => {
       this._request(
         new RainwaveRequest(
           "request_line",
           {},
-          (data) =>
-            resolve(data as RainwaveRequests["request_line"]["response"]),
+          (data) => resolve(data as RainwaveRequests["request_line"]["response"]),
           reject
         )
       );
     });
   }
 
+  /**
+   * Fills the user's request queue with unrated songs.
+   *
+   * @api4 request_unrated_songs
+   */
   requestUnratedSongs(
     params: RainwaveRequests["request_unrated_songs"]["params"]
   ): Promise<RainwaveRequests["request_unrated_songs"]["response"]> {
@@ -753,15 +856,19 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
           "request_unrated_songs",
           params,
           (data) =>
-            resolve(
-              data as RainwaveRequests["request_unrated_songs"]["response"]
-            ),
+            resolve(data as RainwaveRequests["request_unrated_songs"]["response"]),
           reject
         )
       );
     });
   }
 
+  /**
+   * Search artists, albums, and songs for a matching string. Case insensitive.
+   * Submitted string will be stripped of accents and punctuation.
+   *
+   * @api4 search
+   */
   search(
     params: RainwaveRequests["search"]["params"]
   ): Promise<RainwaveRequests["search"]["response"]> {
@@ -777,6 +884,11 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     });
   }
 
+  /**
+   * Get detailed information about a song.
+   *
+   * @api4 song
+   */
   song(
     params: RainwaveRequests["song"]["params"]
   ): Promise<RainwaveRequests["song"]["response"]> {
@@ -792,22 +904,29 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     });
   }
 
-  stationSongCount(): Promise<
-    RainwaveRequests["station_song_count"]["response"]
-  > {
+  /**
+   * Get the total number of songs in the playlist on each station.
+   *
+   * @api4 station_song_count
+   */
+  stationSongCount(): Promise<RainwaveRequests["station_song_count"]["response"]> {
     return new Promise((resolve, reject) => {
       this._request(
         new RainwaveRequest(
           "station_song_count",
           {},
-          (data) =>
-            resolve(data as RainwaveRequests["station_song_count"]["response"]),
+          (data) => resolve(data as RainwaveRequests["station_song_count"]["response"]),
           reject
         )
       );
     });
   }
 
+  /**
+   * Get information about all available stations.
+   *
+   * @api4 stations
+   */
   stations(): Promise<RainwaveRequests["stations"]["response"]> {
     return new Promise((resolve, reject) => {
       this._request(
@@ -821,6 +940,11 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     });
   }
 
+  /**
+   * Get the 100 highest-rated songs on the station the websocket is connected to.
+   *
+   * @api4 top_100
+   */
   top100(): Promise<RainwaveRequests["top_100"]["response"]> {
     return new Promise((resolve, reject) => {
       this._request(
@@ -834,67 +958,67 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     });
   }
 
-  unpauseRequestQueue(): Promise<
-    RainwaveRequests["unpause_request_queue"]["response"]
-  > {
+  /**
+   * Allows the user's request queue to continue being processed.
+   * Adds the user back to the request line.
+   *
+   * @api4 unpause_request_queue
+   */
+  unpauseRequestQueue(): Promise<RainwaveRequests["unpause_request_queue"]["response"]> {
     return new Promise((resolve, reject) => {
       this._request(
         new RainwaveRequest(
           "unpause_request_queue",
           {},
           (data) =>
-            resolve(
-              data as RainwaveRequests["unpause_request_queue"]["response"]
-            ),
+            resolve(data as RainwaveRequests["unpause_request_queue"]["response"]),
           reject
         )
       );
     });
   }
 
+  /**
+   * Get all of a user's unrated songs by page.
+   *
+   * @api4 unrated_songs
+   */
   unratedSongs(): Promise<RainwaveRequests["unrated_songs"]["response"]> {
     return new Promise((resolve, reject) => {
       this._request(
         new RainwaveRequest(
           "unrated_songs",
           {},
-          (data) =>
-            resolve(data as RainwaveRequests["unrated_songs"]["response"]),
+          (data) => resolve(data as RainwaveRequests["unrated_songs"]["response"]),
           reject
         )
       );
     });
   }
 
-  userInfo(): Promise<RainwaveRequests["user_info"]["response"]> {
-    return new Promise((resolve, reject) => {
-      this._request(
-        new RainwaveRequest(
-          "user_info",
-          {},
-          (data) => resolve(data as RainwaveRequests["user_info"]["response"]),
-          reject
-        )
-      );
-    });
-  }
-
-  userRecentVotes(): Promise<
-    RainwaveRequests["user_recent_votes"]["response"]
-  > {
+  /**
+   * Shows the songs the user recently voted for.
+   *
+   * @api4 user_recent_votes
+   */
+  userRecentVotes(): Promise<RainwaveRequests["user_recent_votes"]["response"]> {
     return new Promise((resolve, reject) => {
       this._request(
         new RainwaveRequest(
           "user_recent_votes",
           {},
-          (data) =>
-            resolve(data as RainwaveRequests["user_recent_votes"]["response"]),
+          (data) => resolve(data as RainwaveRequests["user_recent_votes"]["response"]),
           reject
         )
       );
     });
   }
 
+  /**
+   * Shows requests of a user that were entered into an election.
+   *
+   * @api4 user_requested_history
+   */
   userRequestedHistory(): Promise<
     RainwaveRequests["user_requested_history"]["response"]
   > {
@@ -904,15 +1028,20 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
           "user_requested_history",
           {},
           (data) =>
-            resolve(
-              data as RainwaveRequests["user_requested_history"]["response"]
-            ),
+            resolve(data as RainwaveRequests["user_requested_history"]["response"]),
           reject
         )
       );
     });
   }
 
+  /**
+   * Vote for a candidate in an election.
+   *
+   * If user has already voted, the vote will be changed to the submitted song.
+   *
+   * @api4 vote
+   */
   vote(
     params: RainwaveRequests["vote"]["params"]
   ): Promise<RainwaveRequests["vote"]["response"]> {

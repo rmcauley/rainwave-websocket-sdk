@@ -41,11 +41,17 @@ export interface Listener {
   avatar: string | null;
   colour: string;
   rank: string;
+  /** @deprecated */
   total_votes: number;
+  /** @deprecated */
   total_ratings: number;
+  /** @deprecated */
   mind_changes: number;
+  /** @deprecated */
   total_requests: number;
+  /** @deprecated */
   winning_votes: number;
+  /** @deprecated */
   losing_votes: number;
   regdate: RainwaveTime;
   top_albums: ListenerTopAlbum[];

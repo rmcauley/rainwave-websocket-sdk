@@ -95,7 +95,7 @@
     "import/no-default-export": "off",
     "import/no-duplicates": "error",
     "import/no-named-default": "error",
-    "import/order": "error",
+    "import/order": "off",
     "no-array-constructor": "error",
     "no-console": "error",
     "no-constant-condition": ["error", { "checkLoops": false }],

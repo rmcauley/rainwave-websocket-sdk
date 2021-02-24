@@ -134,7 +134,6 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="index.rainwave.html#top100" class="tsd-kind-icon">top100</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="index.rainwave.html#unpauserequestqueue" class="tsd-kind-icon">unpause<wbr>Request<wbr>Queue</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="index.rainwave.html#unratedsongs" class="tsd-kind-icon">unrated<wbr>Songs</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="index.rainwave.html#userinfo" class="tsd-kind-icon">user<wbr>Info</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="index.rainwave.html#userrecentvotes" class="tsd-kind-icon">user<wbr>Recent<wbr>Votes</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="index.rainwave.html#userrequestedhistory" class="tsd-kind-icon">user<wbr>Requested<wbr>History</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="index.rainwave.html#vote" class="tsd-kind-icon">vote</a></li>
@@ -149,19 +148,43 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Rainwave<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RainwaveOptions</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RainwaveOptions</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;userId&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;apiKey&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sid&quot;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="index.rainwave.html" class="tsd-signature-type" data-tsd-kind="Class">Rainwave</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Rainwave<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>apiKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>debug<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>msg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">; </span>onSocketError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Event</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">; </span>sid<span class="tsd-signature-symbol">: </span><a href="../enums/types.station.html" class="tsd-signature-type" data-tsd-kind="Enumeration">Station</a><span class="tsd-signature-symbol">; </span>url<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>userId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="index.rainwave.html" class="tsd-signature-type" data-tsd-kind="Class">Rainwave</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L43">rainwave.ts:43</a></li>
-								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>options: <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RainwaveOptions</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RainwaveOptions</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;userId&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;apiKey&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sid&quot;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>options: <span class="tsd-signature-symbol">{ </span>apiKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>debug<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>msg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">; </span>onSocketError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Event</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">; </span>sid<span class="tsd-signature-symbol">: </span><a href="../enums/types.station.html" class="tsd-signature-type" data-tsd-kind="Enumeration">Station</a><span class="tsd-signature-symbol">; </span>url<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>userId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5>api<wbr>Key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> debug<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>msg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Socket<wbr>Error<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Event</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>sid<span class="tsd-signature-symbol">: </span><a href="../enums/types.station.html" class="tsd-signature-type" data-tsd-kind="Enumeration">Station</a></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> url<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<dl class="tsd-comment-tags">
+													<dt>defaultvalue</dt>
+													<dd><p>&quot;wss://rainwave.cc/api4/websocket/&quot;</p>
+													</dd>
+												</dl>
+											</div>
+										</li>
+										<li class="tsd-parameter">
+											<h5>user<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										</li>
+									</ul>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="index.rainwave.html" class="tsd-signature-type" data-tsd-kind="Class">Rainwave</a></h4>
@@ -180,9 +203,6 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L77">rainwave.ts:77</a></li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
@@ -211,9 +231,6 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L104">rainwave.ts:104</a></li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
@@ -236,9 +253,6 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/eventListener.ts#L31">eventListener.ts:31</a></li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
@@ -248,7 +262,7 @@
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
-									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;albums&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;artists&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;songs&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;album&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all_albums_by_cursor&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all_artists&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all_faves&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all_groups&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all_songs&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;artist&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;group&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;listener&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;ping&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;pong&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;playback_history&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;request_line&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;song&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;station_song_count&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;stations&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;top_100&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;unrated_songs&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;user_info&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;user_recent_votes&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;user_requested_history&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;rate_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;requests&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all_stations_info&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;pause_request_queue_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;user&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;request_favorited_songs_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;request_unrated_songs_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;unpause_request_queue_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;vote_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;already_voted&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;api_info&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;build_version&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;cookie_domain&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;delete_request_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;error_report_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;error&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;fave_album_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;fave_all_songs_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;fave_song_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;live_voting&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;locale&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;locales&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;message_id&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;mobile&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;on_draw&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;on_init&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;on_measure&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;pongConfirm&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;redownload_m3u&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;relays&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;request_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sched_current&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sched_history&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sched_next&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sdk_exception&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sdk_error_clear&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sdk_schedule_synced&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;station_list&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;stream_filename&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sync_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;websocket_host&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;wsok&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;wsthrottle&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;wserror&quot;</span></h4>
+									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;albums&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;artists&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;songs&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;album&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all_albums_by_cursor&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all_artists&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all_faves&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all_groups&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all_songs&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;artist&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;group&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;listener&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;ping&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;pong&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;playback_history&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;request_line&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;song&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;station_song_count&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;stations&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;top_100&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;unrated_songs&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;user_info&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;user_recent_votes&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;user_requested_history&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;rate_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;requests&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all_stations_info&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;pause_request_queue_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;user&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;request_favorited_songs_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;request_unrated_songs_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;unpause_request_queue_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;vote_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;album_diff&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;already_voted&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;api_info&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;build_version&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;cookie_domain&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;delete_request_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;error_report_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;error&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;fave_album_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;fave_all_songs_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;fave_song_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;live_voting&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;locale&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;locales&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;message_id&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;mobile&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;on_draw&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;on_init&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;on_measure&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;pongConfirm&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;redownload_m3u&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;relays&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;request_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sched_current&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sched_history&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sched_next&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sdk_exception&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sdk_error_clear&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sdk_schedule_synced&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;station_list&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;stream_filename&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sync_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;websocket_host&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;wsok&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;wsthrottle&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;wserror&quot;</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -273,9 +287,6 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/eventListener.ts#L17">eventListener.ts:17</a></li>
-								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
@@ -285,7 +296,7 @@
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
-									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;albums&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;artists&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;songs&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;album&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all_albums_by_cursor&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all_artists&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all_faves&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all_groups&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all_songs&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;artist&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;group&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;listener&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;ping&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;pong&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;playback_history&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;request_line&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;song&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;station_song_count&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;stations&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;top_100&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;unrated_songs&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;user_info&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;user_recent_votes&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;user_requested_history&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;rate_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;requests&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all_stations_info&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;pause_request_queue_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;user&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;request_favorited_songs_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;request_unrated_songs_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;unpause_request_queue_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;vote_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;already_voted&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;api_info&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;build_version&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;cookie_domain&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;delete_request_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;error_report_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;error&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;fave_album_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;fave_all_songs_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;fave_song_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;live_voting&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;locale&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;locales&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;message_id&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;mobile&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;on_draw&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;on_init&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;on_measure&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;pongConfirm&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;redownload_m3u&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;relays&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;request_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sched_current&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sched_history&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sched_next&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sdk_exception&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sdk_error_clear&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sdk_schedule_synced&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;station_list&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;stream_filename&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sync_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;websocket_host&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;wsok&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;wsthrottle&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;wserror&quot;</span></h4>
+									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;albums&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;artists&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;songs&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;album&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all_albums_by_cursor&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all_artists&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all_faves&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all_groups&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all_songs&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;artist&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;group&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;listener&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;ping&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;pong&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;playback_history&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;request_line&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;song&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;station_song_count&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;stations&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;top_100&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;unrated_songs&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;user_info&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;user_recent_votes&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;user_requested_history&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;rate_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;requests&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;all_stations_info&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;pause_request_queue_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;user&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;request_favorited_songs_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;request_unrated_songs_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;unpause_request_queue_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;vote_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;album_diff&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;already_voted&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;api_info&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;build_version&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;cookie_domain&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;delete_request_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;error_report_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;error&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;fave_album_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;fave_all_songs_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;fave_song_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;live_voting&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;locale&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;locales&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;message_id&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;mobile&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;on_draw&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;on_init&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;on_measure&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;pongConfirm&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;redownload_m3u&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;relays&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;request_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sched_current&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sched_history&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sched_next&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sdk_exception&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sdk_error_clear&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sdk_schedule_synced&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;station_list&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;stream_filename&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;sync_result&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;websocket_host&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;wsok&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;wsthrottle&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;wserror&quot;</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -313,10 +324,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L381">rainwave.ts:381</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get detailed information about an album, including a list of songs in the album.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>album</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -358,10 +376,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L396">rainwave.ts:396</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a list of all albums on the server by page.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>all_albums_by_cursor</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>all_albums<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -375,10 +400,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L414">rainwave.ts:414</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets all artists from Rainwave in a single page.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>all_artists</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>all_artists<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.artistinlibrary.html" class="tsd-signature-type" data-tsd-kind="Interface">ArtistInLibrary</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -392,10 +424,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L428">rainwave.ts:428</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get all songs that have been faved by the user by page.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>all_faves</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>all_faves<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.favesong.html" class="tsd-signature-type" data-tsd-kind="Interface">FaveSong</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -409,10 +448,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L441">rainwave.ts:441</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get a list of all song groups on the station playlist in a single page.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>all_groups</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>all_groups<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.songgroup.html" class="tsd-signature-type" data-tsd-kind="Interface">SongGroup</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -421,19 +467,26 @@
 					<a name="allsongs" class="tsd-anchor"></a>
 					<h3>all<wbr>Songs</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">all<wbr>Songs<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RainwavePagedParams</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>order<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;rating&quot;</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>all_songs<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.allsongssong.html" class="tsd-signature-type" data-tsd-kind="Interface">AllSongsSong</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">all<wbr>Songs<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.allsongsrequestparams.html" class="tsd-signature-type" data-tsd-kind="Interface">AllSongsRequestParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>all_songs<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.allsongssong.html" class="tsd-signature-type" data-tsd-kind="Interface">AllSongsSong</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L454">rainwave.ts:454</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets every song including a user&#39;s ratings by page.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>all_songs</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>params: <span class="tsd-signature-type">RainwavePagedParams</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>order<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;rating&quot;</span><span class="tsd-signature-symbol"> }</span></h5>
+									<h5>params: <a href="../interfaces/types.allsongsrequestparams.html" class="tsd-signature-type" data-tsd-kind="Interface">AllSongsRequestParams</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>all_songs<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.allsongssong.html" class="tsd-signature-type" data-tsd-kind="Interface">AllSongsSong</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -449,10 +502,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L469">rainwave.ts:469</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get detailed information about an artist.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>artist</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -482,10 +542,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L484">rainwave.ts:484</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Remove a user&#39;s song rating.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>clear_rating</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -515,10 +582,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L500">rainwave.ts:500</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Clears all requests from the user&#39;s queue.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>clear_requests</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>requests<span class="tsd-signature-symbol">: </span><a href="../modules/types.html#requests" class="tsd-signature-type" data-tsd-kind="Type alias">Requests</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -532,10 +606,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L514">rainwave.ts:514</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Clears all requests from the user&#39;s queue that are on a cooldown of 20 minutes or more.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>clear_requests_on_cooldown</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>requests<span class="tsd-signature-symbol">: </span><a href="../modules/types.html#requests" class="tsd-signature-type" data-tsd-kind="Type alias">Requests</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -549,10 +630,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L532">rainwave.ts:532</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes a request from the user&#39;s queue.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>delete_request</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -582,10 +670,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L548">rainwave.ts:548</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Fave or un-fave an album, specific to the station the request is being made on.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>fave_album</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -623,10 +718,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L563">rainwave.ts:563</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Faves or un-faves all songs in an album. Only songs on the station the websocket is conneted to will be faved.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>fave_all_songs</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -664,10 +766,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L579">rainwave.ts:579</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Fave or un-fave a song.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>fave_song</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -705,10 +814,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L594">rainwave.ts:594</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get detailed information about a song group.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>group</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -733,16 +849,23 @@
 					<a name="infoall" class="tsd-anchor"></a>
 					<h3>info<wbr>All</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">info<wbr>All<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>info_all<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><a href="../enums/types.station.html" class="tsd-signature-type" data-tsd-kind="Enumeration">Station</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/types.stationinfo.html" class="tsd-signature-type" data-tsd-kind="Interface">StationInfo</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">info<wbr>All<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>all_stations_info<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><a href="../enums/types.station.html" class="tsd-signature-type" data-tsd-kind="Enumeration">Station</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/types.stationinfo.html" class="tsd-signature-type" data-tsd-kind="Interface">StationInfo</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L609">rainwave.ts:609</a></li>
-								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>info_all<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><a href="../enums/types.station.html" class="tsd-signature-type" data-tsd-kind="Enumeration">Station</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/types.stationinfo.html" class="tsd-signature-type" data-tsd-kind="Interface">StationInfo</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a basic dict containing rudimentary information on what is currently playing on all stations.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>info_all</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>all_stations_info<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><a href="../enums/types.station.html" class="tsd-signature-type" data-tsd-kind="Enumeration">Station</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/types.stationinfo.html" class="tsd-signature-type" data-tsd-kind="Interface">StationInfo</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -755,10 +878,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L622">rainwave.ts:622</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets detailed information, such as favourite albums and rating histogram, on a particular user.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>listener</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -788,10 +918,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L637">rainwave.ts:637</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Change the order of requests in the user&#39;s queue. Submit a comma-separated list of Song IDs, in desired order.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>order_requests</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -821,10 +958,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L653">rainwave.ts:653</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Stops the user from having their request queue processed while they&#39;re listening. Will remove them from the request line.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>pause_request_queue</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>pause_requests_queue_result<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.booleanresult.html" class="tsd-signature-type" data-tsd-kind="Interface">BooleanResult</a><span class="tsd-signature-symbol">; </span>user<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.user.html" class="tsd-signature-type" data-tsd-kind="Interface">User</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -838,10 +982,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L671">rainwave.ts:671</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the last 100 songs that played on the station.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>playback_history</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>playback_history<span class="tsd-signature-symbol">: </span><a href="../modules/types.html#playbackhistory" class="tsd-signature-type" data-tsd-kind="Type alias">PlaybackHistory</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -850,30 +1001,45 @@
 					<a name="rate" class="tsd-anchor"></a>
 					<h3>rate</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">rate<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>rating<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>songId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>rate<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.rateresult.html" class="tsd-signature-type" data-tsd-kind="Interface">RateResult</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">rate<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>rating<span class="tsd-signature-symbol">: </span><a href="../modules/types.html#validatedsongratinguser" class="tsd-signature-type" data-tsd-kind="Type alias">ValidatedSongRatingUser</a><span class="tsd-signature-symbol">; </span>song_id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>rate<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.rateresult.html" class="tsd-signature-type" data-tsd-kind="Interface">RateResult</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L685">rainwave.ts:685</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Rate a song.</p>
+								</div>
+								<p>For new users, the user must have been tuned in for this song to rate it, or they
+								must be tuned in if it&#39;s the currently playing song.</p>
+								<p>For users who have rated 100 songs, they are allowed to rate any song at any time.</p>
+								<p>Songs that are part of <a href="../interfaces/types.rainwaveeventsong.html">RainwaveEventSong</a> have a <code>rating_allowed</code> property
+									you can use to check before submission if the user can rate.  For other songs, you
+									can use the <code>rate_anything</code> property of <a href="../interfaces/types.user.html">User</a> to check before submission.
+									The API will return a <a href="../interfaces/types.rainwaveerror.html">RainwaveError</a> if the user is not allowed to rate
+								the song yet.</p>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>rate</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>params: <span class="tsd-signature-symbol">{ </span>rating<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>songId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></h5>
+									<h5>params: <span class="tsd-signature-symbol">{ </span>rating<span class="tsd-signature-symbol">: </span><a href="../modules/types.html#validatedsongratinguser" class="tsd-signature-type" data-tsd-kind="Type alias">ValidatedSongRatingUser</a><span class="tsd-signature-symbol">; </span>song_id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></h5>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter">
-											<h5>rating<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+											<h5>rating<span class="tsd-signature-symbol">: </span><a href="../modules/types.html#validatedsongratinguser" class="tsd-signature-type" data-tsd-kind="Type alias">ValidatedSongRatingUser</a></h5>
 											<div class="tsd-comment tsd-typography">
 												<div class="lead">
-													<p>Rating to set the song to.  Values are limited - see <a href="../modules/types.html#ratinguser">RatingUser</a>.  Recommended to use <a href="../modules/index.html#getvalidatedratinguser">getValidatedRatingUser</a>.</p>
+													<p>Rating to set the song to.  Recommended to use <a href="../modules/index.html#getvalidatedratinguser">getValidatedRatingUser</a>.</p>
 												</div>
 											</div>
 										</li>
 										<li class="tsd-parameter">
-											<h5>song<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+											<h5>song_<wbr>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
 											<div class="tsd-comment tsd-typography">
 												<div class="lead">
 													<p>ID of Song to rate.</p>
@@ -896,10 +1062,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L700">rainwave.ts:700</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Submits a request for a song.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>request</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -929,10 +1102,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L715">rainwave.ts:715</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Fills the user&#39;s request queue with favorited songs.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>request_favorited_songs</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -962,10 +1142,18 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L733">rainwave.ts:733</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gives a list of who is waiting in line to make a request on the given station,
+									plus their current top-requested song if they have one available.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>request_line</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>request_line<span class="tsd-signature-symbol">: </span><a href="../modules/types.html#requestline" class="tsd-signature-type" data-tsd-kind="Type alias">RequestLine</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -979,10 +1167,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L747">rainwave.ts:747</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Fills the user&#39;s request queue with unrated songs.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>request_unrated_songs</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1012,10 +1207,18 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L765">rainwave.ts:765</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Search artists, albums, and songs for a matching string. Case insensitive.
+									Submitted string will be stripped of accents and punctuation.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>search</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1045,10 +1248,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L780">rainwave.ts:780</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get detailed information about a song.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>song</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1078,10 +1288,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L795">rainwave.ts:795</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the total number of songs in the playlist on each station.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>station_song_count</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>station_song_count<span class="tsd-signature-symbol">: </span><a href="../modules/types.html#stationsongcount" class="tsd-signature-type" data-tsd-kind="Type alias">StationSongCount</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -1095,10 +1312,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L811">rainwave.ts:811</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get information about all available stations.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>stations</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>stations<span class="tsd-signature-symbol">: </span><a href="../modules/types.html#stations" class="tsd-signature-type" data-tsd-kind="Type alias">Stations</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -1112,10 +1336,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L824">rainwave.ts:824</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the 100 highest-rated songs on the station the websocket is connected to.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>top_100</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>top_100<span class="tsd-signature-symbol">: </span><a href="../modules/types.html#top100" class="tsd-signature-type" data-tsd-kind="Type alias">Top100</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -1129,10 +1360,18 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L837">rainwave.ts:837</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Allows the user&#39;s request queue to continue being processed.
+									Adds the user back to the request line.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>unpause_request_queue</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>unpause_requests_queue_result<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.booleanresult.html" class="tsd-signature-type" data-tsd-kind="Interface">BooleanResult</a><span class="tsd-signature-symbol">; </span>user<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.user.html" class="tsd-signature-type" data-tsd-kind="Interface">User</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -1146,28 +1385,18 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L855">rainwave.ts:855</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get all of a user&#39;s unrated songs by page.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>unrated_songs</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>unrated_songs<span class="tsd-signature-symbol">: </span><a href="../modules/types.html#unratedsongs" class="tsd-signature-type" data-tsd-kind="Type alias">UnratedSongs</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="userinfo" class="tsd-anchor"></a>
-					<h3>user<wbr>Info</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">user<wbr>Info<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>user_info<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.user.html" class="tsd-signature-type" data-tsd-kind="Interface">User</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L869">rainwave.ts:869</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>user_info<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.user.html" class="tsd-signature-type" data-tsd-kind="Interface">User</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1180,10 +1409,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L882">rainwave.ts:882</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Shows the songs the user recently voted for.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>user_recent_votes</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>user_recent_votes<span class="tsd-signature-symbol">: </span><a href="../modules/types.html#userrecentvotes" class="tsd-signature-type" data-tsd-kind="Type alias">UserRecentVotes</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -1197,10 +1433,17 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L898">rainwave.ts:898</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Shows requests of a user that were entered into an election.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>user_requested_history</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>user_requested_history<span class="tsd-signature-symbol">: </span><a href="../modules/types.html#userrecentvotes" class="tsd-signature-type" data-tsd-kind="Type alias">UserRecentVotes</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -1214,10 +1457,18 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/rmcauley/rainwave-sdk/blob/39022a0/src/rainwave.ts#L916">rainwave.ts:916</a></li>
-								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Vote for a candidate in an election.</p>
+								</div>
+								<p>If user has already voted, the vote will be changed to the submitted song.</p>
+								<dl class="tsd-comment-tags">
+									<dt>api4</dt>
+									<dd><p>vote</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1374,9 +1625,6 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="index.rainwave.html#unratedsongs" class="tsd-kind-icon">unrated<wbr>Songs</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="index.rainwave.html#userinfo" class="tsd-kind-icon">user<wbr>Info</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="index.rainwave.html#userrecentvotes" class="tsd-kind-icon">user<wbr>Recent<wbr>Votes</a>

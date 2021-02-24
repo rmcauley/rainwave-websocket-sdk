@@ -1,10 +1,9 @@
 import { RainwaveResponseTypes } from "./responseTypes";
-import { RatingUser } from "./types/ratingUser";
-
-interface RainwavePagedParams extends Record<string, number | undefined> {
-  per_page?: number;
-  page_start?: number;
-}
+import {
+  AllSongsRequestParams,
+  RainwavePagedParams,
+  ValidatedSongRatingUser,
+} from "./types";
 
 interface BaseRequest {
   response: unknown;
@@ -44,14 +43,7 @@ interface AllGroupsRequest extends BaseRequest {
 
 interface AllSongsRequest extends BaseRequest {
   response: { all_songs: RainwaveResponseTypes["all_songs"] };
-  params: RainwavePagedParams & {
-    /**
-     * How songs in the album will be sorted.
-     * - `undefined | null`: alphabetically.
-     * - `rating`: rating, descending.
-     * */
-    order?: "rating";
-  };
+  params: AllSongsRequestParams;
 }
 
 interface ArtistRequest extends BaseRequest {
@@ -148,7 +140,7 @@ interface GroupRequest extends BaseRequest {
 }
 
 interface InfoAllRequest extends BaseRequest {
-  response: { info_all: RainwaveResponseTypes["all_stations_info"] };
+  response: { all_stations_info: RainwaveResponseTypes["all_stations_info"] };
 }
 
 interface ListenerRequest extends BaseRequest {
@@ -193,9 +185,9 @@ interface RateRequest extends BaseRequest {
   response: { rate: RainwaveResponseTypes["rate_result"] };
   params: {
     /** ID of Song to rate. */
-    songId: number;
-    /** Rating to set the song to.  Values are limited - see {@link RatingUser}.  Recommended to use {@link getValidatedRatingUser}. */
-    rating: RatingUser;
+    song_id: number;
+    /** Rating to set the song to.  Recommended to use {@link getValidatedRatingUser}. */
+    rating: ValidatedSongRatingUser;
   };
 }
 

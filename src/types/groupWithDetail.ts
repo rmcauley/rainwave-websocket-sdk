@@ -1,3 +1,4 @@
+import { Album } from ".";
 import { SongBase } from "./songBase";
 import { Station } from "./station";
 import { RainwaveTime } from "./time";
@@ -11,5 +12,5 @@ export interface GroupSong extends Omit<SongBase, "artists"> {
 export interface GroupWithDetail {
   id: number;
   name: string;
-  all_songs_for_sid: Record<number, Record<Station, GroupSong>>;
+  all_songs_for_sid: Record<Album["id"], Record<Station, GroupSong>>;
 }

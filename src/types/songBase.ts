@@ -1,3 +1,4 @@
+import { RatingUser } from ".";
 import { Album } from "./album";
 import { Artist } from "./artist";
 
@@ -8,7 +9,7 @@ export interface SongBase {
   id: number;
   length: number;
   link_text: string | null;
-  rating_user: number | null;
+  rating_user: RatingUser;
   rating: number;
   title: string;
   url: string | null;
