@@ -1,4 +1,4 @@
-import NodeWebSocket from "ws";
+import WebSocket from "ws";
 import { RainwaveSDKUsageError } from "./errors";
 import { RainwaveEventListener } from "./eventListener";
 import { RainwaveRequest } from "./request";
@@ -8,11 +8,15 @@ import { RainwaveError } from "./types/error";
 import { Station } from "./types/station";
 
 const PING_INTERVAL = 45000;
-const WEBSOCKET_CHECK_TIMEOUT_MS = 3000;
 const DEFAULT_RECONNECT_TIMEOUT = 500;
 const STATELESS_REQUESTS = ["ping", "pong"];
 const MAX_QUEUED_REQUESTS = 10;
 const SINGLE_REQUEST_TIMEOUT = 4000;
+
+type ErrorEvent = WebSocket.ErrorEvent;
+type CloseEvent = WebSocket.CloseEvent;
+
+type OnSocketErrorType = (event: ErrorEvent) => void;
 
 export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
   private _userId: number;
@@ -20,13 +24,15 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
   private _sid: Station;
   private _url: string;
   private _debug: (msg: string) => void;
-  private _externalOnSocketError: (event: Event) => void;
-  private _socket?: NodeWebSocket | WebSocket;
+  private _externalOnSocketError: OnSocketErrorType;
+  private _socket?: WebSocket;
   private _isOk?: boolean = false;
   private _socketTimeoutTimer: number | null = null;
   private _pingInterval: number | null = null;
   private _socketStaysClosed: boolean = false;
   private _socketIsBusy: boolean = false;
+  private _authPromiseResolve?: () => void;
+  private _authPromiseReject?: (event?: ErrorEvent | CloseEvent) => void;
 
   private _currentScheduleId: number | undefined;
   private _requestId: number = 0;
@@ -40,7 +46,7 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     /** @defaultValue "wss://rainwave.cc/api4/websocket/" */
     url?: string;
     debug?: (msg: string | Error) => void;
-    onSocketError?: (event: Event) => void;
+    onSocketError?: OnSocketErrorType;
   }) {
     super();
 
@@ -67,28 +73,27 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
    * Connect, authenticate, get current Rainwave status, and subscribe to Rainwave API events.
    *
    * @category Connection
-   *
-   * @param nodeSocket If working under Node environment, pass `ws` socket here.
    */
-  public startWebSocketSync(nodeSocket?: NodeWebSocket): void {
+  public startWebSocketSync(): Promise<void> {
     if (this._socket?.readyState === WebSocket.OPEN) {
-      return;
+      return Promise.resolve();
     }
 
     if (this._socketTimeoutTimer) {
       clearTimeout(this._socketTimeoutTimer);
     }
-    this._socketTimeoutTimer = (setTimeout(
-      this._websocketCheck.bind(this),
-      WEBSOCKET_CHECK_TIMEOUT_MS
-    ) as unknown) as number;
 
-    const socket = nodeSocket || new WebSocket(`${this._url}/websocket/${this._sid}`);
+    const socket = new WebSocket(`${this._url}${this._sid}`);
     socket.onmessage = this._onMessage.bind(this);
     socket.onclose = this._onSocketClose.bind(this);
     socket.onerror = this._onSocketError.bind(this);
     socket.onopen = this._onSocketOpen.bind(this);
     this._socket = socket;
+
+    return new Promise((resolve, reject) => {
+      this._authPromiseResolve = resolve;
+      this._authPromiseReject = reject;
+    });
   }
 
   /**
@@ -96,47 +101,27 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
    *
    * @category Connection
    */
-  public stopWebSocketSync(): void {
+  public stopWebSocketSync(): Promise<void> {
     if (
       !this._socket ||
       this._socket.readyState === WebSocket.CLOSING ||
       this._socket.readyState === WebSocket.CLOSED
     ) {
-      return;
+      return Promise.resolve();
     }
 
-    // sometimes depending on browser condition, onSocketClose won't get called for a while.
-    // therefore it's important to clean here *and* in onSocketClose.
-    this._cleanVariablesOnClose();
     this._socketStaysClosed = true;
     this._socket.close();
-    this._debug("Socket closed.");
+    this._debug("Socket closed by SDK.");
+    return new Promise((resolve) => {
+      this._authPromiseReject = (): void => resolve();
+    });
   }
 
-  private _socketSend(message: unknown): void {
-    if (!this._socket) {
-      throw new RainwaveSDKUsageError("Attempted to send to a disconnected socket.");
+  private _cleanVariablesOnClose(event?: CloseEvent | ErrorEvent): void {
+    if (event) {
+      this._debug(JSON.stringify(Object.keys(event)));
     }
-    let jsonmsg: string;
-    try {
-      jsonmsg = JSON.stringify(message);
-    } catch (error) {
-      this.emit("sdk_exception", error);
-      return;
-    }
-    try {
-      this._socket.send(jsonmsg);
-    } catch (error) {
-      this.emit("sdk_exception", error);
-    }
-  }
-
-  private _websocketCheck(): void {
-    this._debug("Couldn't appear to connect.");
-    this._reconnectSocket();
-  }
-
-  private _cleanVariablesOnClose(): void {
     this._isOk = false;
     if (this._socketTimeoutTimer) {
       clearTimeout(this._socketTimeoutTimer);
@@ -146,6 +131,30 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
       clearInterval(this._pingInterval);
       this._pingInterval = null;
     }
+    if (this._authPromiseReject) {
+      this._authPromiseReject(event);
+    }
+    this._authPromiseReject = undefined;
+    this._authPromiseResolve = undefined;
+  }
+
+  private _onSocketClose(event: CloseEvent): void {
+    const staysClosed = this._socketStaysClosed || this._authPromiseReject;
+    this._cleanVariablesOnClose(event);
+    if (staysClosed) {
+      return;
+    }
+
+    this._debug("Socket closed on event.");
+    setTimeout(() => {
+      this.startWebSocketSync();
+    }, DEFAULT_RECONNECT_TIMEOUT);
+  }
+
+  private _onSocketError(event: ErrorEvent): void {
+    this.emit("error", { code: 0, tl_key: "sync_retrying", text: "" });
+    this._externalOnSocketError(event);
+    this._socket?.close();
   }
 
   private _onSocketOpen(): void {
@@ -155,25 +164,6 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
       user_id: this._userId,
       key: this._apiKey,
     });
-  }
-
-  private _onSocketClose(event?: Event): void {
-    if (this._socketStaysClosed) {
-      return;
-    }
-
-    this._debug("Socket was closed.");
-    if (event) {
-      this._onSocketError(event);
-    }
-    setTimeout(this.startWebSocketSync.bind(this), DEFAULT_RECONNECT_TIMEOUT);
-  }
-
-  private _onSocketError(event?: Event): void {
-    this.emit("error", { code: 0, tl_key: "sync_retrying", text: "" });
-    if (event) {
-      this._externalOnSocketError(event);
-    }
   }
 
   private _onAuthenticationOK(): void {
@@ -196,6 +186,12 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     }
 
     this._nextRequest();
+
+    if (this._authPromiseResolve) {
+      this._authPromiseResolve();
+      this._authPromiseResolve = undefined;
+      this._authPromiseReject = undefined;
+    }
   }
 
   private _onAuthenticationFailure(error: RainwaveError): void {
@@ -205,6 +201,24 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
       );
       this.emit("error", error);
       this.stopWebSocketSync();
+    }
+  }
+
+  private _socketSend(message: unknown): void {
+    if (!this._socket) {
+      throw new RainwaveSDKUsageError("Attempted to send to a disconnected socket.");
+    }
+    let jsonmsg: string;
+    try {
+      jsonmsg = JSON.stringify(message);
+    } catch (error) {
+      this.emit("sdk_exception", error);
+      return;
+    }
+    try {
+      this._socket.send(jsonmsg);
+    } catch (error) {
+      this.emit("sdk_exception", error);
     }
   }
 
@@ -229,7 +243,8 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
 
   // Data From API *****************************************************************************************
 
-  private _onMessage(message: { data: string }): void {
+  private _onMessage(messageFromWS: unknown): void {
+    const message = messageFromWS as { data: string };
     this.emit("sdk_error_clear", { tl_key: "sync_retrying" });
     if (this._socketTimeoutTimer) {
       clearTimeout(this._socketTimeoutTimer);

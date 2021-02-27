@@ -1,5 +1,5 @@
-import { RainwaveSDKInvalidRatingError } from "src/errors";
-import { RatingUser, ValidatedSongRatingUser } from "src/types/ratingUser";
+import { RainwaveSDKInvalidRatingError } from "../errors";
+import { RatingUser, ValidatedSongRatingUser } from "../types/ratingUser";
 
 function guardRatingUser(ratingUser: RatingUser): ValidatedSongRatingUser {
   if (ratingUser === 1) {

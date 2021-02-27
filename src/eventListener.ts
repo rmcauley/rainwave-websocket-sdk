@@ -31,9 +31,7 @@ export class RainwaveEventListener<E> {
   public off<K extends keyof E>(event: K, fn: Listener<E[K]>): void {
     const eListeners = this._eventListeners[event];
     if (eListeners) {
-      this._eventListeners[event] = eListeners.filter(
-        (listener) => listener !== fn
-      );
+      this._eventListeners[event] = eListeners.filter((listener) => listener !== fn);
     }
   }
 

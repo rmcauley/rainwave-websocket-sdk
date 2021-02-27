@@ -3,7 +3,7 @@
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 2015,
-    "project": "./tsconfig.json"
+    "project": "tsconfig.json"
   },
 
   "env": {
@@ -11,7 +11,7 @@
     "browser": true
   },
 
-  "plugins": ["@typescript-eslint", "import"],
+  "plugins": ["@typescript-eslint", "import", "jest"],
 
   "extends": [
     "eslint:recommended",
@@ -113,5 +113,23 @@
     "radix": "error",
     "require-await": "error",
     "yoda": "error"
-  }
+  },
+
+  "overrides": [
+    {
+      "files": ["**/*.test.ts", "**/*.spec.ts"],
+      "extends": ["plugin:jest/recommended"],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-magic-numbers": "off",
+        "jest/prefer-strict-equal": "error",
+        "no-global-assign": "off"
+      },
+      "env": {
+        "browser": false,
+        "jest": true,
+        "node": true
+      }
+    }
+  ]
 }
