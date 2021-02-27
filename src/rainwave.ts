@@ -31,8 +31,10 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
   private _pingInterval: number | null = null;
   private _socketStaysClosed: boolean = false;
   private _socketIsBusy: boolean = false;
-  private _authPromiseResolve?: () => void;
-  private _authPromiseReject?: (event?: ErrorEvent | CloseEvent) => void;
+  private _authPromiseResolve?: (authOk: boolean) => void;
+  private _authPromiseReject?: (
+    error?: ErrorEvent | CloseEvent | RainwaveError | RainwaveResponseTypes["wserror"]
+  ) => void;
 
   private _currentScheduleId: number | undefined;
   private _requestId: number = 0;
@@ -74,9 +76,9 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
    *
    * @category Connection
    */
-  public startWebSocketSync(): Promise<void> {
+  public startWebSocketSync(): Promise<boolean> {
     if (this._socket?.readyState === WebSocket.OPEN) {
-      return Promise.resolve();
+      return Promise.resolve(true);
     }
 
     if (this._socketTimeoutTimer) {
@@ -90,7 +92,7 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     socket.onopen = this._onSocketOpen.bind(this);
     this._socket = socket;
 
-    return new Promise((resolve, reject) => {
+    return new Promise<boolean>((resolve, reject) => {
       this._authPromiseResolve = resolve;
       this._authPromiseReject = reject;
     });
@@ -147,7 +149,7 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
 
     this._debug("Socket closed on event.");
     setTimeout(() => {
-      this.startWebSocketSync();
+      void this.startWebSocketSync();
     }, DEFAULT_RECONNECT_TIMEOUT);
   }
 
@@ -158,7 +160,6 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
   }
 
   private _onSocketOpen(): void {
-    this._debug("Socket open.");
     this._socketSend({
       action: "auth",
       user_id: this._userId,
@@ -188,19 +189,25 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     this._nextRequest();
 
     if (this._authPromiseResolve) {
-      this._authPromiseResolve();
+      this._authPromiseResolve(true);
       this._authPromiseResolve = undefined;
       this._authPromiseReject = undefined;
     }
   }
 
-  private _onAuthenticationFailure(error: RainwaveError): void {
+  private _onAuthenticationFailure(error: RainwaveResponseTypes["wserror"]): void {
     if (error.tl_key === "auth_failed") {
       this._debug(
         "Authorization failed for Rainwave websocket.  Wrong API key/user ID combo."
       );
       this.emit("error", error);
-      this.stopWebSocketSync();
+      if (this._authPromiseReject) {
+        this._authPromiseReject(error);
+        this._authPromiseReject = undefined;
+        this._authPromiseResolve = undefined;
+      }
+      this._socketStaysClosed = true;
+      this._socket?.close();
     }
   }
 

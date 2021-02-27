@@ -1,10 +1,10 @@
 import { Rainwave } from "./index";
-import { Station } from "./types";
+import { RainwaveError, Station } from "./types";
 
-const userId = process.env["RWSDK_TEST_USER_ID"]
-  ? parseInt(process.env["RWSDK_TEST_USER_ID"], 10)
+const userId = process.env.RWSDK_TEST_USER_ID
+  ? parseInt(process.env.RWSDK_TEST_USER_ID, 10)
   : 1;
-const apiKey = process.env["RWSDK_TEST_API_KEY"] || "";
+const apiKey = process.env.RWSDK_TEST_API_KEY || "";
 
 describe("RWSDK basics", () => {
   test("resolves a promise on connection success", async () => {
@@ -13,21 +13,20 @@ describe("RWSDK basics", () => {
       apiKey,
       sid: Station.all,
     });
-    await rw.startWebSocketSync();
+    const connected = await rw.startWebSocketSync();
     await rw.stopWebSocketSync();
+    expect(connected).toBe(true);
   });
 
-  // test("rejects a promise on connection failure", async () => {
-  //   expect.assertions(1);
-  //   const rw = new Rainwave({
-  //     userId,
-  //     apiKey: apiKey + "aaaaaa",
-  //     sid: Station.all,
-  //   });
-  //   try {
-  //     await rw.startWebSocketSync();
-  //   } catch (error) {
-  //     expect(error).toBeDefined();
-  //   }
-  // });
+  test("rejects a promise on connection failure", () => {
+    expect.assertions(1);
+    const rw = new Rainwave({
+      userId,
+      apiKey: apiKey + "aaaaaa",
+      sid: Station.all,
+    });
+    return rw.startWebSocketSync().catch((error: RainwaveError) => {
+      expect(error.tl_key).toBe("auth_failed");
+    });
+  });
 });
