@@ -6,7 +6,7 @@ import { ApiInfo } from "./types/apiInfo";
 import { ArtistInLibrary } from "./types/artistInLibrary";
 import { ArtistWithSongs } from "./types/artistWithSongs";
 import { BooleanResult } from "./types/booleanResult";
-import { RainwaveError } from "./types/error";
+import { RainwaveErrorObject } from "./types/rainwaveErrorObject";
 import { RainwaveSDKErrorClear } from "./types/sdkErrorClear";
 import { FaveAlbumResult } from "./types/faveAlbumResult";
 import { FaveAllSongsResult } from "./types/faveAllSongsResult";
@@ -57,7 +57,7 @@ export interface RainwaveResponseTypes {
   cookie_domain: string;
   delete_request_result: BooleanResult;
   error_report_result: BooleanResult;
-  error: RainwaveError;
+  error: RainwaveErrorObject;
   fave_album_result: FaveAlbumResult;
   fave_all_songs_result: FaveAllSongsResult;
   fave_song_result: FaveSongResult;
@@ -97,7 +97,7 @@ export interface RainwaveResponseTypes {
   station_song_count: StationSongCount;
   stations: Stations;
   stream_filename: string;
-  sync_result: RainwaveError;
+  sync_result: RainwaveErrorObject;
   top_100: Top100;
   unpause_request_queue_result: BooleanResult;
   unrated_songs: UnratedSongs;
@@ -109,5 +109,5 @@ export interface RainwaveResponseTypes {
   websocket_host: string;
   wsok: true;
   wsthrottle: { tl_key: string; text: string };
-  wserror: RainwaveError;
+  wserror: RainwaveErrorObject;
 }

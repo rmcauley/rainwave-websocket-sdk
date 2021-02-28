@@ -1,4 +1,4 @@
-import { RainwaveError } from ".";
+import { RainwaveErrorObject } from "./rainwaveErrorObject";
 
 /**
  * This event is emitted with the same `tl_key` as a {@RainwaveError}
@@ -6,5 +6,5 @@ import { RainwaveError } from ".";
  * error which occurs when the websocket has been disconnected.
  */
 export interface RainwaveSDKErrorClear {
-  tl_key: RainwaveError["tl_key"];
+  tl_key: RainwaveErrorObject["tl_key"];
 }

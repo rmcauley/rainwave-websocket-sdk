@@ -1,6 +1,6 @@
+import { RainwaveError } from "./errors";
 import { Rainwave } from "./index";
-import { RainwaveError, Station } from "./types";
-import { getRainwaveError } from "./utils/getRainwaveError";
+import { Station } from "./types";
 
 const userId = process.env.RWSDK_TEST_USER_ID
   ? parseInt(process.env.RWSDK_TEST_USER_ID, 10)
@@ -26,8 +26,11 @@ describe("Rainwave SDK Connectivity", () => {
       apiKey: apiKey + "aaaaaa",
       sid: Station.all,
     });
-    return rw.startWebSocketSync().catch((error: RainwaveError) => {
-      expect(error.tl_key).toBe("auth_failed");
+    return rw.startWebSocketSync().catch((error: unknown) => {
+      if (!(error instanceof RainwaveError)) {
+        throw new Error("SDK did not throw a RainwaveError.");
+      }
+      expect(error.key).toBe("auth_failed");
     });
   });
 });
@@ -46,13 +49,14 @@ describe("Error Handling", () => {
   });
 
   test("should resolve a request error with a rejected promise", () => {
-    expect.assertions(1);
+    expect.assertions(3);
     return rw.request({ song_id: -1 }).catch((error: unknown) => {
-      const parsedError = getRainwaveError(error);
-      expect(parsedError.rainwaveErrorText).toBeDefined();
-      expect(parsedError.rainwaveErrorTlKey).toBeDefined();
-      expect(parsedError.error).toBeUndefined();
-      expect(parsedError.unknown).toBeUndefined();
+      if (!(error instanceof RainwaveError)) {
+        throw new Error("SDK did not throw a RainwaveError.");
+      }
+      expect(error.key).toBeDefined();
+      expect(error.text).toBeDefined();
+      expect(error.response).toBeDefined();
     });
   });
 });

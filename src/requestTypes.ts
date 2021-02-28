@@ -157,8 +157,8 @@ interface OrderRequestsRequest extends BaseRequest {
     requests: RainwaveResponseTypes["requests"];
   };
   params: {
-    /** Ordered array of all Song IDs in User's Requests that will determine the new order. */
-    order: number[];
+    /** Ordered array of all Song IDs in User's Requests that will determine the new order.  String of numerics separated by commas. */
+    order: string;
   };
 }
 

@@ -1,13 +1,15 @@
 import WebSocket from "ws";
-import { RainwaveSDKDisconnectedError, RainwaveSDKUsageError } from "./errors";
+import {
+  RainwaveError,
+  RainwaveSDKDisconnectedError,
+  RainwaveSDKUsageError,
+} from "./errors";
 import { RainwaveEventListener } from "./eventListener";
 import { RainwaveRequest } from "./request";
 import { RainwaveRequests } from "./requestTypes";
 import { RainwaveResponseTypes } from "./responseTypes";
-import { RainwaveError } from "./types/error";
 import { Station } from "./types/station";
 import { getSuccessFalse } from "./utils/getSuccessFalse";
-import { RAINWAVE_ERROR_OBJECT_FLAG } from "./utils/getRainwaveError";
 
 const PING_INTERVAL = 45000;
 const DEFAULT_RECONNECT_TIMEOUT = 500;
@@ -35,15 +37,7 @@ class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
   private _socketStaysClosed: boolean = false;
   private _socketIsBusy: boolean = false;
   private _authPromiseResolve?: (authOk: boolean) => void;
-  private _authPromiseReject?: (
-    error?:
-      | ErrorEvent
-      | CloseEvent
-      | RainwaveError
-      | RainwaveResponseTypes["wserror"]
-      | Error
-      | Partial<RainwaveResponseTypes>
-  ) => void;
+  private _authPromiseReject?: (error: unknown) => void;
 
   private _currentScheduleId: number | undefined;
   private _requestId: number = 0;
@@ -154,7 +148,7 @@ class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
   }
 
   private _onSocketClose(event: CloseEvent): void {
-    const staysClosed = this._socketStaysClosed || this._authPromiseReject;
+    const staysClosed = this._socketStaysClosed || !!this._authPromiseReject;
     this._cleanVariablesOnClose(event);
     if (staysClosed) {
       return;
@@ -215,7 +209,14 @@ class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
       );
       this.emit("error", error);
       if (this._authPromiseReject) {
-        this._authPromiseReject(error);
+        this._authPromiseReject(
+          new RainwaveError(
+            "Authentication failed.",
+            { wserror: error },
+            error.tl_key,
+            error.text
+          )
+        );
         this._authPromiseReject = undefined;
         this._authPromiseResolve = undefined;
       }
@@ -296,12 +297,20 @@ class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
       this._sentRequests = this._sentRequests.filter(
         (rq) => rq.messageId !== json.message_id?.message_id
       );
-      const hasSuccessFalse = !!getSuccessFalse(json);
-      if (hasSuccessFalse || json.error) {
-        matchingSentRequest.reject({
-          ...json,
-          [RAINWAVE_ERROR_OBJECT_FLAG]: true,
-        });
+      const successFalse = getSuccessFalse(json);
+      if (successFalse) {
+        matchingSentRequest.reject(
+          new RainwaveError(
+            successFalse.text,
+            json,
+            successFalse.tl_key,
+            successFalse.text
+          )
+        );
+      } else if (json.error) {
+        matchingSentRequest.reject(
+          new RainwaveError(json.error.text, json, json.error.tl_key, json.error.text)
+        );
       } else {
         matchingSentRequest.resolve(json);
       }
@@ -739,14 +748,16 @@ class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
    *
    * @api4 order_requests
    */
-  orderRequests(
-    params: RainwaveRequests["order_requests"]["params"]
-  ): Promise<RainwaveRequests["order_requests"]["response"]> {
+  orderRequests(params: {
+    order: number[];
+  }): Promise<RainwaveRequests["order_requests"]["response"]> {
     return new Promise((resolve, reject) => {
       this._request(
         new RainwaveRequest(
           "order_requests",
-          params,
+          {
+            order: params.order.join(","),
+          },
           (data) => resolve(data as RainwaveRequests["order_requests"]["response"]),
           reject
         )
@@ -801,7 +812,7 @@ class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
    * Songs that are part of {@link RainwaveEventSong} have a `rating_allowed` property
    * you can use to check before submission if the user can rate.  For other songs, you
    * can use the `rate_anything` property of {@link User} to check before submission.
-   * The API will return a {@link RainwaveError} if the user is not allowed to rate
+   * The API will return a {@link RainwaveErrorObject} if the user is not allowed to rate
    * the song yet.
    *
    * @api4 rate

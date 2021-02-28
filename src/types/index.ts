@@ -12,7 +12,7 @@ import { ArtistWithSongs, SongInArtist } from "./artistWithSongs";
 import { BooleanResult } from "./booleanResult";
 import { ElecBlockedBy } from "./elecBlockBy";
 import { ElectionSongType } from "./electionSongType";
-import { RainwaveError } from "./error";
+import { RainwaveErrorObject } from "./rainwaveErrorObject";
 import { RainwaveSDKErrorClear } from "./sdkErrorClear";
 import { FaveAlbumResult } from "./faveAlbumResult";
 import { FaveAllSongsResult } from "./faveAllSongsResult";
@@ -106,7 +106,7 @@ export {
   PlaybackHistoryEntry,
   Pong,
   PongConfirm,
-  RainwaveError,
+  RainwaveErrorObject,
   RainwaveEvent,
   RainwaveEventSong,
   RainwaveEventSongArtist,
