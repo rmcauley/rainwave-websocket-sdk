@@ -48,7 +48,7 @@ export interface RainwaveResponseTypes {
   all_faves: FaveSong[];
   all_groups: SongGroup[];
   all_songs: AllSongsSong[];
-  all_stations_info: AllStationsInfo[];
+  all_stations_info: AllStationsInfo;
   already_voted: AlreadyVoted;
   api_info: ApiInfo;
   artists: SearchResult["artists"];
@@ -71,6 +71,7 @@ export interface RainwaveResponseTypes {
   on_draw: unknown[];
   on_init: unknown[];
   on_measure: unknown[];
+  order_requests_result: BooleanResult;
   pause_request_queue_result: BooleanResult;
   ping: Ping;
   pong: Pong;

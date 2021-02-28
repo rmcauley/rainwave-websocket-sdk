@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint src/*.ts src/**/*.ts",
-    "test": "jest --colors",
+    "test": "jest --colors --runInBand",
     "build": "tsc && typedoc",
     "typedoc": "typedoc --watch",
     "prepush": "npm run lint && npm run test && npm run build"

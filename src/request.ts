@@ -2,18 +2,20 @@ import { RainwaveRequests } from "./requestTypes";
 import { RainwaveResponseTypes } from "./responseTypes";
 import { Station } from "./types/station";
 
+export type RejectSignature = (error: unknown) => void;
+
 export class RainwaveRequest<T extends keyof RainwaveRequests> {
   action: string;
   params: RainwaveRequests[T]["params"];
   messageId?: number;
   private _resolve: (data: RainwaveRequests[T]["response"]) => void;
-  reject: (error: RainwaveResponseTypes["error"]) => void;
+  reject: RejectSignature;
 
   constructor(
     action: string,
     params: RainwaveRequests[T]["params"],
     resolve: (data: RainwaveRequests[T]["response"]) => void,
-    reject: (error: RainwaveResponseTypes["error"]) => void,
+    reject: RejectSignature,
     messageId?: number
   ) {
     this.action = action;

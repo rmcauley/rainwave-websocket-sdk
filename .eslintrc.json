@@ -31,7 +31,11 @@
         "selector": "default",
         "format": ["camelCase"]
       },
-
+      {
+        "selector": "classProperty",
+        "format": ["camelCase", "snake_case"],
+        "leadingUnderscore": "allow"
+      },
       {
         "selector": "variable",
         "format": ["camelCase", "UPPER_CASE"],

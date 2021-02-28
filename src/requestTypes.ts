@@ -76,7 +76,7 @@ interface CheckSchedCurrentId extends BaseRequest {
 }
 
 interface ClearRatingRequest extends BaseRequest {
-  response: { clear_rating: RainwaveResponseTypes["rate_result"] };
+  response: { rate_result: RainwaveResponseTypes["rate_result"] };
   params: {
     /** Song ID of rating to clear. */
     song_id: number;
@@ -102,7 +102,7 @@ interface DeleteRequestRequest extends BaseRequest {
 }
 
 interface FaveAlbumRequest extends BaseRequest {
-  response: { fave_album: RainwaveResponseTypes["rate_result"] };
+  response: { fave_album_result: RainwaveResponseTypes["fave_album_result"] };
   params: {
     /** ID of Album to update. */
     album_id: number;
@@ -112,7 +112,7 @@ interface FaveAlbumRequest extends BaseRequest {
 }
 
 interface FaveAllSongsRequest extends BaseRequest {
-  response: { fave_all_songs: RainwaveResponseTypes["rate_result"] };
+  response: { fave_all_songs_result: RainwaveResponseTypes["fave_all_songs_result"] };
   params: {
     /** ID of Album to update.  All songs in this Album will be updated. */
     album_id: number;
@@ -122,7 +122,7 @@ interface FaveAllSongsRequest extends BaseRequest {
 }
 
 interface FaveSongRequest extends BaseRequest {
-  response: { fave_song: RainwaveResponseTypes["rate_result"] };
+  response: { fave_song_result: RainwaveResponseTypes["fave_song_result"] };
   params: {
     /** ID of Song to update. */
     song_id: number;
@@ -152,7 +152,10 @@ interface ListenerRequest extends BaseRequest {
 }
 
 interface OrderRequestsRequest extends BaseRequest {
-  response: { order_requests: RainwaveResponseTypes["requests"] };
+  response: {
+    order_requests_result: RainwaveResponseTypes["order_requests_result"];
+    requests: RainwaveResponseTypes["requests"];
+  };
   params: {
     /** Ordered array of all Song IDs in User's Requests that will determine the new order. */
     order: number[];
@@ -161,7 +164,7 @@ interface OrderRequestsRequest extends BaseRequest {
 
 interface PauseRequestQueueRequest extends BaseRequest {
   response: {
-    pause_requests_queue_result: RainwaveResponseTypes["pause_request_queue_result"];
+    pause_request_queue_result: RainwaveResponseTypes["pause_request_queue_result"];
     user: RainwaveResponseTypes["user"];
   };
 }
@@ -182,7 +185,7 @@ interface PlaybackHistoryRequest extends BaseRequest {
 }
 
 interface RateRequest extends BaseRequest {
-  response: { rate: RainwaveResponseTypes["rate_result"] };
+  response: { rate_result: RainwaveResponseTypes["rate_result"] };
   params: {
     /** ID of Song to rate. */
     song_id: number;
@@ -211,7 +214,7 @@ interface RequestFavoritedSongsRequest extends BaseRequest {
 }
 
 interface RequestLineRequest extends BaseRequest {
-  response: { request_line: RainwaveResponseTypes["request_line"] };
+  response: { request_line_result: RainwaveResponseTypes["request_line"] };
 }
 
 interface RequestUnratedSongsRequest extends BaseRequest {
@@ -261,7 +264,7 @@ interface Top100Request extends BaseRequest {
 
 interface UnpauseRequestQueueRequest extends BaseRequest {
   response: {
-    unpause_requests_queue_result: RainwaveResponseTypes["unpause_request_queue_result"];
+    unpause_request_queue_result: RainwaveResponseTypes["unpause_request_queue_result"];
     user: RainwaveResponseTypes["user"];
   };
 }

@@ -12,4 +12,15 @@ class RainwaveSDKInvalidRatingError extends Error {
   }
 }
 
-export { RainwaveSDKUsageError, RainwaveSDKInvalidRatingError };
+class RainwaveSDKDisconnectedError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "RainwaveSDKDisconnectedError";
+  }
+}
+
+export {
+  RainwaveSDKUsageError,
+  RainwaveSDKInvalidRatingError,
+  RainwaveSDKDisconnectedError,
+};

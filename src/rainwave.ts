@@ -1,11 +1,13 @@
 import WebSocket from "ws";
-import { RainwaveSDKUsageError } from "./errors";
+import { RainwaveSDKDisconnectedError, RainwaveSDKUsageError } from "./errors";
 import { RainwaveEventListener } from "./eventListener";
 import { RainwaveRequest } from "./request";
 import { RainwaveRequests } from "./requestTypes";
 import { RainwaveResponseTypes } from "./responseTypes";
 import { RainwaveError } from "./types/error";
 import { Station } from "./types/station";
+import { getSuccessFalse } from "./utils/getSuccessFalse";
+import { RAINWAVE_ERROR_OBJECT_FLAG } from "./utils/getRainwaveError";
 
 const PING_INTERVAL = 45000;
 const DEFAULT_RECONNECT_TIMEOUT = 500;
@@ -15,10 +17,11 @@ const SINGLE_REQUEST_TIMEOUT = 4000;
 
 type ErrorEvent = WebSocket.ErrorEvent;
 type CloseEvent = WebSocket.CloseEvent;
+type MessageEvent = WebSocket.MessageEvent;
 
 type OnSocketErrorType = (event: ErrorEvent) => void;
 
-export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
+class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
   private _userId: number;
   private _apiKey: string;
   private _sid: Station;
@@ -33,7 +36,13 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
   private _socketIsBusy: boolean = false;
   private _authPromiseResolve?: (authOk: boolean) => void;
   private _authPromiseReject?: (
-    error?: ErrorEvent | CloseEvent | RainwaveError | RainwaveResponseTypes["wserror"]
+    error?:
+      | ErrorEvent
+      | CloseEvent
+      | RainwaveError
+      | RainwaveResponseTypes["wserror"]
+      | Error
+      | Partial<RainwaveResponseTypes>
   ) => void;
 
   private _currentScheduleId: number | undefined;
@@ -138,6 +147,10 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     }
     this._authPromiseReject = undefined;
     this._authPromiseResolve = undefined;
+    this._sentRequests.forEach((rwRequest) => {
+      rwRequest.reject(new RainwaveSDKDisconnectedError("Socket closed."));
+    });
+    this._sentRequests = [];
   }
 
   private _onSocketClose(event: CloseEvent): void {
@@ -250,8 +263,7 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
 
   // Data From API *****************************************************************************************
 
-  private _onMessage(messageFromWS: unknown): void {
-    const message = messageFromWS as { data: string };
+  private _onMessage(message: MessageEvent): void {
     this.emit("sdk_error_clear", { tl_key: "sync_retrying" });
     if (this._socketTimeoutTimer) {
       clearTimeout(this._socketTimeoutTimer);
@@ -260,7 +272,7 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
 
     let json: Partial<RainwaveResponseTypes>;
     try {
-      json = JSON.parse(message.data) as Partial<RainwaveResponseTypes>;
+      json = JSON.parse(message.data.toString()) as Partial<RainwaveResponseTypes>;
     } catch (error) {
       this._debug(JSON.stringify(message));
       this._debug(error);
@@ -273,18 +285,23 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
       this._debug(JSON.stringify(message));
       this._debug("Response from Rainwave API was blank!");
       this._reconnectSocket();
+      return;
     }
 
     const matchingSentRequest = this._sentRequests.find(
-      (rq) => rq.messageId === json.message_id
+      (rq) => rq.messageId === json.message_id?.message_id
     );
 
     if (matchingSentRequest) {
       this._sentRequests = this._sentRequests.filter(
-        (rq) => rq.messageId !== json.message_id
+        (rq) => rq.messageId !== json.message_id?.message_id
       );
-      if (json.error) {
-        matchingSentRequest.reject(json.error);
+      const hasSuccessFalse = !!getSuccessFalse(json);
+      if (hasSuccessFalse || json.error) {
+        matchingSentRequest.reject({
+          ...json,
+          [RAINWAVE_ERROR_OBJECT_FLAG]: true,
+        });
       } else {
         matchingSentRequest.resolve(json);
       }
@@ -590,7 +607,7 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     return new Promise((resolve, reject) => {
       this._request(
         new RainwaveRequest(
-          "delete_requests",
+          "delete_request",
           params,
           (data) => resolve(data as RainwaveRequests["delete_request"]["response"]),
           reject
@@ -830,7 +847,7 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
    * @api4 request_favorited_songs
    */
   requestFavoritedSongs(
-    params: RainwaveRequests["request_favorited_songs"]["params"]
+    params: RainwaveRequests["request_favorited_songs"]["params"] = {}
   ): Promise<RainwaveRequests["request_favorited_songs"]["response"]> {
     return new Promise((resolve, reject) => {
       this._request(
@@ -870,7 +887,7 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
    * @api4 request_unrated_songs
    */
   requestUnratedSongs(
-    params: RainwaveRequests["request_unrated_songs"]["params"]
+    params: RainwaveRequests["request_unrated_songs"]["params"] = {}
   ): Promise<RainwaveRequests["request_unrated_songs"]["response"]> {
     return new Promise((resolve, reject) => {
       this._request(
@@ -1079,3 +1096,5 @@ export class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     });
   }
 }
+
+export { Rainwave };
