@@ -39,3 +39,7 @@ line with the REST `info` API call.
 - `sched_next`: An array of {@link types.RainwaveEvent}
 - `sched_history`: An array of {@link types.RainwaveEvent}
 - `all_stations_info`: {@link types.AllStationsInfo}
+
+### Examples
+
+- [Write On Song Change](https://github.com/rmcauley/rainwave-write-on-song-change)
