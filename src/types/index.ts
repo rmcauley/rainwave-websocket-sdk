@@ -52,7 +52,7 @@ import {
   SongWithDetailAlbum,
   SongWithDetailArtist,
 } from "./songWithDetail";
-import { Station } from "./station";
+import { Station, stationByString } from "./station";
 import { Stations, StationDescription } from "./stations";
 import { StationSongCount, StationSongCountByStation } from "./stationSongCount";
 import { RainwaveTime } from "./time";
@@ -137,6 +137,7 @@ export {
   SongWithDetailAlbum,
   SongWithDetailArtist,
   Station,
+  stationByString,
   StationDescription,
   StationInfo,
   Stations,

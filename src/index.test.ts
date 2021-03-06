@@ -61,6 +61,24 @@ describe("Error Handling", () => {
   });
 });
 
+describe("Event Listening", () => {
+  test("emits sched_current after websocket connect", async (done) => {
+    expect.assertions(1);
+    const rw = new Rainwave({
+      userId,
+      apiKey,
+      sid: Station.all,
+      debug: (msg) => console.log(msg),
+    });
+    rw.on("sched_current", async (data) => {
+      expect(data).toBeDefined();
+      await rw.stopWebSocketSync();
+      done();
+    });
+    await rw.startWebSocketSync();
+  });
+});
+
 describe("Rainwave SDK API Calls", () => {
   // various IDs from production Rainwave
   const VALKYRIA_CHRONICLES_GROUP_ID = 1966;

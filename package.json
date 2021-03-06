@@ -1,12 +1,15 @@
 {
-  "name": "rainwave-sdk",
-  "version": "0.0.1",
+  "name": "rainwave-websocket-sdk",
+  "version": "1.0.0",
   "description": "SDK for working with the public Rainwave Websocket API.",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "lint": "eslint src/*.ts src/**/*.ts",
     "test": "jest --colors --runInBand",
-    "build": "tsc && typedoc",
+    "build": "npx rimraf dist && tsc && typedoc",
     "typedoc": "typedoc --watch",
     "prepush": "npm run lint && npm run test && npm run build"
   },
@@ -34,6 +37,7 @@
     "husky": "^5.1.1",
     "jest": "^26.6.3",
     "prettier": "2.2.1",
+    "rimraf": "^3.0.2",
     "ts-jest": "^26.5.2",
     "typedoc": "^0.20.27",
     "typescript": "4.1.3",

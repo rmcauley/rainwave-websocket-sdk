@@ -65,6 +65,9 @@ class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     this.on("wsok", this._onAuthenticationOK.bind(this));
     this.on("wserror", this._onAuthenticationFailure.bind(this));
     this.on("ping", this._onPing.bind(this));
+    this.on("sched_current", (current) => {
+      this._currentScheduleId = current.id;
+    });
   }
 
   private _getNextRequestId(): number {
@@ -175,7 +178,7 @@ class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
   }
 
   private _onAuthenticationOK(): void {
-    this._debug("wsok received - auth was good!");
+    this._debug("Rainwave connected successfully.");
     this.emit("sdk_error_clear", { tl_key: "sync_retrying" });
     this._isOk = true;
 
@@ -186,12 +189,10 @@ class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
       ) as unknown) as number;
     }
 
-    if (this._currentScheduleId) {
-      this._socketSend({
-        action: "check_sched_current_id",
-        sched_id: this._currentScheduleId,
-      });
-    }
+    this._socketSend({
+      action: "check_sched_current_id",
+      sched_id: this._currentScheduleId || 1,
+    });
 
     this._nextRequest();
 
