@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>RedownloadM3u | Rainwave Websocket SDK - v1.0.1</title>
-	<meta name="description" content="Documentation for Rainwave Websocket SDK - v1.0.1">
+	<title>AllSongsSong | Rainwave Websocket SDK - v1.0.2</title>
+	<meta name="description" content="Documentation for Rainwave Websocket SDK - v1.0.2">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 	<script async src="../assets/js/search.js" id="search-script"></script>
@@ -23,7 +23,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">Rainwave Websocket SDK - v1.0.1</a>
+					<a href="../index.html" class="title">Rainwave Websocket SDK - v1.0.2</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -50,35 +50,27 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="../modules.html">Rainwave Websocket SDK - v1.0.1</a>
+					<a href="../modules.html">Rainwave Websocket SDK - v1.0.2</a>
 				</li>
 				<li>
-					<a href="../modules/types.html">types</a>
+					<a href="../modules/index.html">index</a>
 				</li>
 				<li>
-					<a href="types.redownloadm3u.html">RedownloadM3u</a>
+					<a href="index.allsongssong.html">AllSongsSong</a>
 				</li>
 			</ul>
-			<h1>Interface RedownloadM3u</h1>
+			<h1>Interface AllSongsSong</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>This API event occurs when a user who is logged in tunes in without using their listener key.
-						This prompts them to tune in again in order to obtain the correct M3U.</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">RedownloadM3u</span>
+						<span class="target">AllSongsSong</span>
 					</li>
 				</ul>
 			</section>
@@ -89,8 +81,12 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="types.redownloadm3u.html#text" class="tsd-kind-icon">text</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="types.redownloadm3u.html#tl_key" class="tsd-kind-icon">tl_<wbr>key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="index.allsongssong.html#album_name" class="tsd-kind-icon">album_<wbr>name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="index.allsongssong.html#fave" class="tsd-kind-icon">fave</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="index.allsongssong.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="index.allsongssong.html#rating" class="tsd-kind-icon">rating</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="index.allsongssong.html#rating_user" class="tsd-kind-icon">rating_<wbr>user</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="index.allsongssong.html#title" class="tsd-kind-icon">title</a></li>
 							</ul>
 						</section>
 					</div>
@@ -99,16 +95,44 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="text" class="tsd-anchor"></a>
-					<h3>text</h3>
-					<div class="tsd-signature tsd-kind-icon">text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="album_name" class="tsd-anchor"></a>
+					<h3>album_<wbr>name</h3>
+					<div class="tsd-signature tsd-kind-icon">album_<wbr>name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="tl_key" class="tsd-anchor"></a>
-					<h3>tl_<wbr>key</h3>
-					<div class="tsd-signature tsd-kind-icon">tl_<wbr>key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;redownload_m3u&quot;</span></div>
+					<a name="fave" class="tsd-anchor"></a>
+					<h3>fave</h3>
+					<div class="tsd-signature tsd-kind-icon">fave<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="rating" class="tsd-anchor"></a>
+					<h3>rating</h3>
+					<div class="tsd-signature tsd-kind-icon">rating<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="rating_user" class="tsd-anchor"></a>
+					<h3>rating_<wbr>user</h3>
+					<div class="tsd-signature tsd-kind-icon">rating_<wbr>user<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="title" class="tsd-anchor"></a>
+					<h3>title</h3>
+					<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 					</aside>
 				</section>
@@ -120,13 +144,13 @@
 					<li class=" ">
 						<a href="../modules.html">Modules</a>
 					</li>
-					<li class=" tsd-kind-module">
+					<li class="current tsd-kind-module">
 						<a href="../modules/index.html">index</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/responsetypes.html">response<wbr>Types</a>
 					</li>
-					<li class="current tsd-kind-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/types.html">types</a>
 					</li>
 				</ul>
@@ -136,13 +160,25 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="types.redownloadm3u.html" class="tsd-kind-icon">Redownload<wbr>M3u</a>
+						<a href="index.allsongssong.html" class="tsd-kind-icon">All<wbr>Songs<wbr>Song</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="types.redownloadm3u.html#text" class="tsd-kind-icon">text</a>
+								<a href="index.allsongssong.html#album_name" class="tsd-kind-icon">album_<wbr>name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="types.redownloadm3u.html#tl_key" class="tsd-kind-icon">tl_<wbr>key</a>
+								<a href="index.allsongssong.html#fave" class="tsd-kind-icon">fave</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="index.allsongssong.html#id" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="index.allsongssong.html#rating" class="tsd-kind-icon">rating</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="index.allsongssong.html#rating_user" class="tsd-kind-icon">rating_<wbr>user</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="index.allsongssong.html#title" class="tsd-kind-icon">title</a>
 							</li>
 						</ul>
 					</li>

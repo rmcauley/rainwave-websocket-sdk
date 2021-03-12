@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>FaveAlbumResult | Rainwave Websocket SDK - v1.0.1</title>
-	<meta name="description" content="Documentation for Rainwave Websocket SDK - v1.0.1">
+	<title>FaveSong | Rainwave Websocket SDK - v1.0.2</title>
+	<meta name="description" content="Documentation for Rainwave Websocket SDK - v1.0.2">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 	<script async src="../assets/js/search.js" id="search-script"></script>
@@ -23,7 +23,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">Rainwave Websocket SDK - v1.0.1</a>
+					<a href="../index.html" class="title">Rainwave Websocket SDK - v1.0.2</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -50,16 +50,16 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="../modules.html">Rainwave Websocket SDK - v1.0.1</a>
+					<a href="../modules.html">Rainwave Websocket SDK - v1.0.2</a>
 				</li>
 				<li>
-					<a href="../modules/types.html">types</a>
+					<a href="../modules/index.html">index</a>
 				</li>
 				<li>
-					<a href="types.favealbumresult.html">FaveAlbumResult</a>
+					<a href="index.favesong.html">FaveSong</a>
 				</li>
 			</ul>
-			<h1>Interface FaveAlbumResult</h1>
+			<h1>Interface FaveSong</h1>
 		</div>
 	</div>
 </header>
@@ -70,12 +70,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="types.booleanresult.html" class="tsd-signature-type" data-tsd-kind="Interface">BooleanResult</a>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">FaveAlbumResult</span>
-							</li>
-						</ul>
+						<span class="target">FaveSong</span>
 					</li>
 				</ul>
 			</section>
@@ -86,12 +81,13 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="types.favealbumresult.html#fave" class="tsd-kind-icon">fave</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="types.favealbumresult.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="types.favealbumresult.html#sid" class="tsd-kind-icon">sid</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="types.favealbumresult.html#success" class="tsd-kind-icon">success</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="types.favealbumresult.html#text" class="tsd-kind-icon">text</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="types.favealbumresult.html#tl_key" class="tsd-kind-icon">tl_<wbr>key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="index.favesong.html#album_id" class="tsd-kind-icon">album_<wbr>id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="index.favesong.html#album_name" class="tsd-kind-icon">album_<wbr>name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="index.favesong.html#fave" class="tsd-kind-icon">fave</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="index.favesong.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="index.favesong.html#rating" class="tsd-kind-icon">rating</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="index.favesong.html#rating_user" class="tsd-kind-icon">rating_<wbr>user</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="index.favesong.html#title" class="tsd-kind-icon">title</a></li>
 							</ul>
 						</section>
 					</div>
@@ -100,16 +96,25 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="fave" class="tsd-anchor"></a>
-					<h3>fave</h3>
-					<div class="tsd-signature tsd-kind-icon">fave<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="album_id" class="tsd-anchor"></a>
+					<h3>album_<wbr>id</h3>
+					<div class="tsd-signature tsd-kind-icon">album_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>New fave status.</p>
-						</div>
-					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="album_name" class="tsd-anchor"></a>
+					<h3>album_<wbr>name</h3>
+					<div class="tsd-signature tsd-kind-icon">album_<wbr>name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="fave" class="tsd-anchor"></a>
+					<h3>fave</h3>
+					<div class="tsd-signature tsd-kind-icon">fave<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="id" class="tsd-anchor"></a>
@@ -117,57 +122,27 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>ID of the changed album.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="sid" class="tsd-anchor"></a>
-					<h3>sid</h3>
-					<div class="tsd-signature tsd-kind-icon">sid<span class="tsd-signature-symbol">:</span> <a href="../enums/types.station.html" class="tsd-signature-type" data-tsd-kind="Enumeration">Station</a></div>
+					<a name="rating" class="tsd-anchor"></a>
+					<h3>rating</h3>
+					<div class="tsd-signature tsd-kind-icon">rating<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="success" class="tsd-anchor"></a>
-					<h3>success</h3>
-					<div class="tsd-signature tsd-kind-icon">success<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="rating_user" class="tsd-anchor"></a>
+					<h3>rating_<wbr>user</h3>
+					<div class="tsd-signature tsd-kind-icon">rating_<wbr>user<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="types.booleanresult.html">BooleanResult</a>.<a href="types.booleanresult.html#success">success</a></p>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>True if operation succeeded, false if it was not successful.</p>
-						</div>
-					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="text" class="tsd-anchor"></a>
-					<h3>text</h3>
-					<div class="tsd-signature tsd-kind-icon">text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="title" class="tsd-anchor"></a>
+					<h3>title</h3>
+					<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="types.booleanresult.html">BooleanResult</a>.<a href="types.booleanresult.html#text">text</a></p>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Text describing the result. Can be presented to users.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="tl_key" class="tsd-anchor"></a>
-					<h3>tl_<wbr>key</h3>
-					<div class="tsd-signature tsd-kind-icon">tl_<wbr>key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from <a href="types.booleanresult.html">BooleanResult</a>.<a href="types.booleanresult.html#tl_key">tl_key</a></p>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Translation key to be used on the rainwave.cc website. Can be used as a result code.</p>
-						</div>
-					</div>
 				</section>
 			</section>
 		</div>
@@ -177,13 +152,13 @@
 					<li class=" ">
 						<a href="../modules.html">Modules</a>
 					</li>
-					<li class=" tsd-kind-module">
+					<li class="current tsd-kind-module">
 						<a href="../modules/index.html">index</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/responsetypes.html">response<wbr>Types</a>
 					</li>
-					<li class="current tsd-kind-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/types.html">types</a>
 					</li>
 				</ul>
@@ -193,25 +168,28 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="types.favealbumresult.html" class="tsd-kind-icon">Fave<wbr>Album<wbr>Result</a>
+						<a href="index.favesong.html" class="tsd-kind-icon">Fave<wbr>Song</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="types.favealbumresult.html#fave" class="tsd-kind-icon">fave</a>
+								<a href="index.favesong.html#album_id" class="tsd-kind-icon">album_<wbr>id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="types.favealbumresult.html#id" class="tsd-kind-icon">id</a>
+								<a href="index.favesong.html#album_name" class="tsd-kind-icon">album_<wbr>name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="types.favealbumresult.html#sid" class="tsd-kind-icon">sid</a>
+								<a href="index.favesong.html#fave" class="tsd-kind-icon">fave</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="types.favealbumresult.html#success" class="tsd-kind-icon">success</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="index.favesong.html#id" class="tsd-kind-icon">id</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="types.favealbumresult.html#text" class="tsd-kind-icon">text</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="index.favesong.html#rating" class="tsd-kind-icon">rating</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="types.favealbumresult.html#tl_key" class="tsd-kind-icon">tl_<wbr>key</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="index.favesong.html#rating_user" class="tsd-kind-icon">rating_<wbr>user</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="index.favesong.html#title" class="tsd-kind-icon">title</a>
 							</li>
 						</ul>
 					</li>

@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>VoteResult | Rainwave Websocket SDK - v1.0.1</title>
-	<meta name="description" content="Documentation for Rainwave Websocket SDK - v1.0.1">
+	<title>RateResult | Rainwave Websocket SDK - v1.0.2</title>
+	<meta name="description" content="Documentation for Rainwave Websocket SDK - v1.0.2">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 	<script async src="../assets/js/search.js" id="search-script"></script>
@@ -23,7 +23,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">Rainwave Websocket SDK - v1.0.1</a>
+					<a href="../index.html" class="title">Rainwave Websocket SDK - v1.0.2</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -50,16 +50,16 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="../modules.html">Rainwave Websocket SDK - v1.0.1</a>
+					<a href="../modules.html">Rainwave Websocket SDK - v1.0.2</a>
 				</li>
 				<li>
-					<a href="../modules/types.html">types</a>
+					<a href="../modules/index.html">index</a>
 				</li>
 				<li>
-					<a href="types.voteresult.html">VoteResult</a>
+					<a href="index.rateresult.html">RateResult</a>
 				</li>
 			</ul>
-			<h1>Interface VoteResult</h1>
+			<h1>Interface RateResult</h1>
 		</div>
 	</div>
 </header>
@@ -70,10 +70,10 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="types.booleanresult.html" class="tsd-signature-type" data-tsd-kind="Interface">BooleanResult</a>
+						<a href="index.booleanresult.html" class="tsd-signature-type" data-tsd-kind="Interface">BooleanResult</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">VoteResult</span>
+								<span class="target">RateResult</span>
 							</li>
 						</ul>
 					</li>
@@ -86,11 +86,12 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="types.voteresult.html#elec_id" class="tsd-kind-icon">elec_<wbr>id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="types.voteresult.html#entry_id" class="tsd-kind-icon">entry_<wbr>id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="types.voteresult.html#success" class="tsd-kind-icon">success</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="types.voteresult.html#text" class="tsd-kind-icon">text</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="types.voteresult.html#tl_key" class="tsd-kind-icon">tl_<wbr>key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="index.rateresult.html#rating_user" class="tsd-kind-icon">rating_<wbr>user</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="index.rateresult.html#song_id" class="tsd-kind-icon">song_<wbr>id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="index.rateresult.html#success" class="tsd-kind-icon">success</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="index.rateresult.html#text" class="tsd-kind-icon">text</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="index.rateresult.html#tl_key" class="tsd-kind-icon">tl_<wbr>key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="index.rateresult.html#updated_album_ratings" class="tsd-kind-icon">updated_<wbr>album_<wbr>ratings</a></li>
 							</ul>
 						</section>
 					</div>
@@ -99,16 +100,16 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="elec_id" class="tsd-anchor"></a>
-					<h3>elec_<wbr>id</h3>
-					<div class="tsd-signature tsd-kind-icon">elec_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="rating_user" class="tsd-anchor"></a>
+					<h3>rating_<wbr>user</h3>
+					<div class="tsd-signature tsd-kind-icon">rating_<wbr>user<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="entry_id" class="tsd-anchor"></a>
-					<h3>entry_<wbr>id</h3>
-					<div class="tsd-signature tsd-kind-icon">entry_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="song_id" class="tsd-anchor"></a>
+					<h3>song_<wbr>id</h3>
+					<div class="tsd-signature tsd-kind-icon">song_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 					</aside>
 				</section>
@@ -117,7 +118,7 @@
 					<h3>success</h3>
 					<div class="tsd-signature tsd-kind-icon">success<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="types.booleanresult.html">BooleanResult</a>.<a href="types.booleanresult.html#success">success</a></p>
+						<p>Inherited from <a href="index.booleanresult.html">BooleanResult</a>.<a href="index.booleanresult.html#success">success</a></p>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
@@ -130,7 +131,7 @@
 					<h3>text</h3>
 					<div class="tsd-signature tsd-kind-icon">text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="types.booleanresult.html">BooleanResult</a>.<a href="types.booleanresult.html#text">text</a></p>
+						<p>Inherited from <a href="index.booleanresult.html">BooleanResult</a>.<a href="index.booleanresult.html#text">text</a></p>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
@@ -143,13 +144,20 @@
 					<h3>tl_<wbr>key</h3>
 					<div class="tsd-signature tsd-kind-icon">tl_<wbr>key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="types.booleanresult.html">BooleanResult</a>.<a href="types.booleanresult.html#tl_key">tl_key</a></p>
+						<p>Inherited from <a href="index.booleanresult.html">BooleanResult</a>.<a href="index.booleanresult.html#tl_key">tl_key</a></p>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Translation key to be used on the rainwave.cc website. Can be used as a result code.</p>
 						</div>
 					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="updated_album_ratings" class="tsd-anchor"></a>
+					<h3>updated_<wbr>album_<wbr>ratings</h3>
+					<div class="tsd-signature tsd-kind-icon">updated_<wbr>album_<wbr>ratings<span class="tsd-signature-symbol">:</span> <a href="types.updatedalbumrating.html" class="tsd-signature-type" data-tsd-kind="Interface">UpdatedAlbumRating</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -159,13 +167,13 @@
 					<li class=" ">
 						<a href="../modules.html">Modules</a>
 					</li>
-					<li class=" tsd-kind-module">
+					<li class="current tsd-kind-module">
 						<a href="../modules/index.html">index</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/responsetypes.html">response<wbr>Types</a>
 					</li>
-					<li class="current tsd-kind-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/types.html">types</a>
 					</li>
 				</ul>
@@ -175,22 +183,25 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="types.voteresult.html" class="tsd-kind-icon">Vote<wbr>Result</a>
+						<a href="index.rateresult.html" class="tsd-kind-icon">Rate<wbr>Result</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="types.voteresult.html#elec_id" class="tsd-kind-icon">elec_<wbr>id</a>
+								<a href="index.rateresult.html#rating_user" class="tsd-kind-icon">rating_<wbr>user</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="types.voteresult.html#entry_id" class="tsd-kind-icon">entry_<wbr>id</a>
+								<a href="index.rateresult.html#song_id" class="tsd-kind-icon">song_<wbr>id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="types.voteresult.html#success" class="tsd-kind-icon">success</a>
+								<a href="index.rateresult.html#success" class="tsd-kind-icon">success</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="types.voteresult.html#text" class="tsd-kind-icon">text</a>
+								<a href="index.rateresult.html#text" class="tsd-kind-icon">text</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="types.voteresult.html#tl_key" class="tsd-kind-icon">tl_<wbr>key</a>
+								<a href="index.rateresult.html#tl_key" class="tsd-kind-icon">tl_<wbr>key</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="index.rateresult.html#updated_album_ratings" class="tsd-kind-icon">updated_<wbr>album_<wbr>ratings</a>
 							</li>
 						</ul>
 					</li>

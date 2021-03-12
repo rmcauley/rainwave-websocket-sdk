@@ -19,12 +19,15 @@ Obtain your own API key and numeric User ID:
 Use them with the SDK:
 
 ```typescript
-function logCurrentlyPlayingSong(rwEvent: RainwaveEvent): void {
-  console.log(`${rwEvent.songs[0].albums[0].name} - ${rwEvent.songs[0].title}`);
-}
-
-const rw = new Rainwave({ userId: 2, apiKey: "ABC123456" });
-rw.on("sched_current", logCurrentlyPlayingSong);
+const rw = new Rainwave({
+  apiKey: "aaaaaaaaa",
+  userId: 2,
+  sid: Station.game,
+});
+rw.on("sched_current", (current) => {
+  console.log(`${current.songs[0].albums[0].name} - ${current.songs[0].title}`);
+});
+await rw.startWebSocketSync();
 ```
 
 ### Emitted Data Every Song Change
