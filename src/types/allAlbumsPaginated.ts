@@ -14,4 +14,18 @@ export interface AlbumInList {
   newest_song_time: RainwaveTime;
 }
 
-export type AllAlbums = AlbumInList[];
+export interface AllAlbumsPaginated {
+  data: AlbumInList[];
+  /**
+   * If true, there is still more data to load.
+   */
+  has_next: boolean;
+  /**
+   * Pass this number as `after` argument to `all_albums_paginated`.
+   */
+  next: number;
+  /**
+   * Number from `0` to `100` indicating loading percent.
+   */
+  progress: number;
+}

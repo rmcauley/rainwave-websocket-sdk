@@ -10,6 +10,7 @@ import { RainwaveRequests } from "./requestTypes";
 import { RainwaveResponseTypes } from "./responseTypes";
 import { Station } from "./types/station";
 import { getSuccessFalse } from "./utils/getSuccessFalse";
+import { AllAlbumsPaginated, AllGroupsPaginated, AllArtistsPaginated } from "./types";
 
 const PING_INTERVAL = 45000;
 const DEFAULT_RECONNECT_TIMEOUT = 500;
@@ -436,17 +437,43 @@ class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
   }
 
   /**
-   * Gets a list of all albums on the server by page.
+   * Gets all albums from the service.  Provide a callback if you want percentage progress
+   * while the data loads.
    *
-   * @api4 all_albums_by_cursor
+   * @param {function} progressCallback accepts a number from 0 to 100 representing loading progress
    */
-  allAlbumsByCursor(): Promise<RainwaveRequests["all_albums_by_cursor"]["response"]> {
+  async allAlbums(
+    progressCallback?: (progress: number) => void
+  ): Promise<AllAlbumsPaginated["data"]> {
+    let result = await this.allAlbumsPaginated();
+    let albums = result.all_albums_paginated.data;
+    if (progressCallback) {
+      progressCallback(result.all_albums_paginated.progress * 100);
+    }
+    while (result.all_albums_paginated.has_next) {
+      result = await this.allAlbumsPaginated({ after: result.all_albums_paginated.next });
+      albums = albums.concat(result.all_albums_paginated.data);
+      if (progressCallback) {
+        progressCallback(result.all_albums_paginated.progress * 100);
+      }
+    }
+    return albums;
+  }
+
+  /**
+   * Gets a list of all albums on the server by paging 1000 albums at a time.
+   *
+   * @api4 all_albums_paginated
+   */
+  allAlbumsPaginated(
+    params?: RainwaveRequests["all_albums_paginated"]["params"]
+  ): Promise<RainwaveRequests["all_albums_paginated"]["response"]> {
     return new Promise((resolve, reject) => {
       this._request(
         new RainwaveRequest(
-          "all_albums_by_cursor",
-          { noSearchable: true },
-          (data) => resolve(data as RainwaveRequests["all_albums_by_cursor"]["response"]),
+          "all_albums_paginated",
+          params || {},
+          (data) => resolve(data as RainwaveRequests["all_albums_paginated"]["response"]),
           reject
         )
       );
@@ -454,17 +481,46 @@ class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
   }
 
   /**
-   * Gets all artists from Rainwave in a single page.
+   * Gets all artists from the service.  Provide a callback if you want percentage progress
+   * while the data loads.
    *
-   * @api4 all_artists
+   * @param {function} progressCallback accepts a number from 0 to 100 representing loading progress
    */
-  allArtists(): Promise<RainwaveRequests["all_artists"]["response"]> {
+  async allArtists(
+    progressCallback?: (progress: number) => void
+  ): Promise<AllArtistsPaginated["data"]> {
+    let result = await this.allArtistsPaginated();
+    let artists = result.all_artists_paginated.data;
+    if (progressCallback) {
+      progressCallback(result.all_artists_paginated.progress * 100);
+    }
+    while (result.all_artists_paginated.has_next) {
+      result = await this.allArtistsPaginated({
+        after: result.all_artists_paginated.next,
+      });
+      artists = artists.concat(result.all_artists_paginated.data);
+      if (progressCallback) {
+        progressCallback(result.all_artists_paginated.progress * 100);
+      }
+    }
+    return artists;
+  }
+
+  /**
+   * Gets all artists from Rainwave in by paging 1000 artists at a time.
+   *
+   * @api4 all_artists_paginated
+   */
+  allArtistsPaginated(
+    params?: RainwaveRequests["all_artists_paginated"]["params"]
+  ): Promise<RainwaveRequests["all_artists_paginated"]["response"]> {
     return new Promise((resolve, reject) => {
       this._request(
         new RainwaveRequest(
-          "all_artists",
-          { noSearchable: true },
-          (data) => resolve(data as RainwaveRequests["all_artists"]["response"]),
+          "all_artists_paginated",
+          params || {},
+          (data) =>
+            resolve(data as RainwaveRequests["all_artists_paginated"]["response"]),
           reject
         )
       );
@@ -490,17 +546,45 @@ class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
   }
 
   /**
-   * Get a list of all song groups on the station playlist in a single page.
+   * Gets all groups from the service.  Provide a callback if you want percentage progress
+   * while the data loads.
    *
-   * @api4 all_groups
+   * @param {function} progressCallback accepts a number from 0 to 100 representing loading progress
    */
-  allGroups(): Promise<RainwaveRequests["all_groups"]["response"]> {
+  async allGroups(
+    progressCallback?: (progress: number) => void
+  ): Promise<AllGroupsPaginated["data"]> {
+    let result = await this.allGroupsPaginated();
+    let groups = result.all_groups_paginated.data;
+    if (progressCallback) {
+      progressCallback(result.all_groups_paginated.progress * 100);
+    }
+    while (result.all_groups_paginated.has_next) {
+      result = await this.allGroupsPaginated({
+        after: result.all_groups_paginated.next,
+      });
+      groups = groups.concat(result.all_groups_paginated.data);
+      if (progressCallback) {
+        progressCallback(result.all_groups_paginated.progress * 100);
+      }
+    }
+    return groups;
+  }
+
+  /**
+   * Get a list of all song groups on the station playlist by paging 1000 groups at a time.
+   *
+   * @api4 all_groups_paginated
+   */
+  allGroupsPaginated(
+    params?: RainwaveRequests["all_groups_paginated"]["params"]
+  ): Promise<RainwaveRequests["all_groups_paginated"]["response"]> {
     return new Promise((resolve, reject) => {
       this._request(
         new RainwaveRequest(
-          "all_groups",
-          { noSearchable: true },
-          (data) => resolve(data as RainwaveRequests["all_groups"]["response"]),
+          "all_groups_paginated",
+          params || {},
+          (data) => resolve(data as RainwaveRequests["all_groups_paginated"]["response"]),
           reject
         )
       );

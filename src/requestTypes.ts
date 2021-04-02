@@ -24,12 +24,14 @@ interface AlbumRequest extends BaseRequest {
   };
 }
 
-interface AllAlbumsByCursorRequest extends BaseRequest {
-  response: { all_albums: RainwaveResponseTypes["all_albums_by_cursor"] };
+interface AllAlbumsPaginatedRequest extends BaseRequest {
+  params: { after?: number };
+  response: { all_albums_paginated: RainwaveResponseTypes["all_albums_paginated"] };
 }
 
-interface AllArtistsRequest extends BaseRequest {
-  response: { all_artists: RainwaveResponseTypes["all_artists"] };
+interface AllArtistsPaginatedRequest extends BaseRequest {
+  params: { after?: number };
+  response: { all_artists_paginated: RainwaveResponseTypes["all_artists_paginated"] };
 }
 
 interface AllFavesRequest extends BaseRequest {
@@ -37,8 +39,9 @@ interface AllFavesRequest extends BaseRequest {
   params: RainwavePagedParams;
 }
 
-interface AllGroupsRequest extends BaseRequest {
-  response: { all_groups: RainwaveResponseTypes["all_groups"] };
+interface AllGroupsPaginatedRequest extends BaseRequest {
+  params: { after?: number };
+  response: { all_groups_paginated: RainwaveResponseTypes["all_groups_paginated"] };
 }
 
 interface AllSongsRequest extends BaseRequest {
@@ -300,10 +303,10 @@ interface VoteRequest extends BaseRequest {
 
 interface RainwaveRequests extends Record<string, BaseRequest> {
   album: AlbumRequest;
-  all_albums_by_cursor: AllAlbumsByCursorRequest;
-  all_artists: AllArtistsRequest;
+  all_albums_paginated: AllAlbumsPaginatedRequest;
+  all_artists_paginated: AllArtistsPaginatedRequest;
   all_faves: AllFavesRequest;
-  all_groups: AllGroupsRequest;
+  all_groups_paginated: AllGroupsPaginatedRequest;
   all_songs: AllSongsRequest;
   artist: ArtistRequest;
   auth: AuthRequest;

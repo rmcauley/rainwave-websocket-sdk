@@ -1,13 +1,12 @@
 import { Album } from "./album";
 import { AlbumDiff } from "./albumDiff";
 import { AlbumWithDetail, SongOnAlbum } from "./albumWithDetail";
-import { AllAlbums, AlbumInList } from "./allAlbums";
+import { AlbumInList, AllAlbumsPaginated } from "./allAlbumsPaginated";
 import { AllSongsSong } from "./allSongsSong";
 import { AllStationsInfo, StationInfo } from "./allStationsInfo";
 import { AlreadyVoted, AlreadyVotedEntry, EntryId, ScheduleId } from "./alreadyVoted";
 import { ApiInfo } from "./apiInfo";
 import { Artist } from "./artist";
-import { ArtistInLibrary } from "./artistInLibrary";
 import { ArtistWithSongs, SongInArtist } from "./artistWithSongs";
 import { BooleanResult } from "./booleanResult";
 import { ElecBlockedBy } from "./elecBlockBy";
@@ -65,13 +64,17 @@ import { VoteResult } from "./voteResult";
 import { RatingUser, ValidatedSongRatingUser } from "./ratingUser";
 import { RainwavePagedParams } from "./rainwavePagedParams";
 import { AllSongsRequestParams } from "./allSongsRequestParams";
+import { AllArtistsPaginated } from "./allArtistsPaginated";
+import { AllGroupsPaginated } from "./allGroupsPaginated";
 
 export {
   Album,
   AlbumDiff,
   AlbumInList,
   AlbumWithDetail,
-  AllAlbums,
+  AllAlbumsPaginated,
+  AllArtistsPaginated,
+  AllGroupsPaginated,
   AllSongsRequestParams,
   AllSongsSong,
   AllStationsInfo,
@@ -79,7 +82,6 @@ export {
   AlreadyVotedEntry,
   ApiInfo,
   Artist,
-  ArtistInLibrary,
   ArtistWithSongs,
   BooleanResult,
   ElecBlockedBy,

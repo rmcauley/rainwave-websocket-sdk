@@ -3,7 +3,6 @@ import { AllSongsSong } from "./types/allSongsSong";
 import { AllStationsInfo } from "./types/allStationsInfo";
 import { AlreadyVoted } from "./types/alreadyVoted";
 import { ApiInfo } from "./types/apiInfo";
-import { ArtistInLibrary } from "./types/artistInLibrary";
 import { ArtistWithSongs } from "./types/artistWithSongs";
 import { BooleanResult } from "./types/booleanResult";
 import { RainwaveErrorObject } from "./types/rainwaveErrorObject";
@@ -27,7 +26,6 @@ import { Relays } from "./types/relays";
 import { RequestLine } from "./types/requestLine";
 import { Requests } from "./types/requests";
 import { SearchResult } from "./types/searchResults";
-import { SongGroup } from "./types/songGroup";
 import { SongWithDetail } from "./types/songWithDetail";
 import { Station } from "./types/station";
 import { Stations } from "./types/stations";
@@ -37,16 +35,21 @@ import { UnratedSongs } from "./types/unratedSongs";
 import { User } from "./types/user";
 import { UserRecentVotes } from "./types/userRecentVotes";
 import { VoteResult } from "./types/voteResult";
-import { AlbumDiff } from "./types";
+import {
+  AlbumDiff,
+  AllAlbumsPaginated,
+  AllArtistsPaginated,
+  AllGroupsPaginated,
+} from "./types";
 
 export interface RainwaveResponseTypes {
   album: AlbumWithDetail;
   album_diff: AlbumDiff;
   albums: SearchResult["albums"];
-  all_albums_by_cursor: unknown;
-  all_artists: ArtistInLibrary[];
+  all_albums_paginated: AllAlbumsPaginated;
+  all_artists_paginated: AllArtistsPaginated;
   all_faves: FaveSong[];
-  all_groups: SongGroup[];
+  all_groups_paginated: AllGroupsPaginated;
   all_songs: AllSongsSong[];
   all_stations_info: AllStationsInfo;
   already_voted: AlreadyVoted;
