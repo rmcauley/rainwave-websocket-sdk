@@ -398,7 +398,11 @@ class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
 
     Object.keys(json).forEach((responseKey) => {
       const typedKey = responseKey as keyof RainwaveResponseTypes;
-      this.emit(typedKey, json[typedKey]);
+      const response = json[typedKey];
+
+      if (response !== undefined) {
+        this.emit(typedKey, response);
+      }
     });
 
     if ("sched_current" in json) {
