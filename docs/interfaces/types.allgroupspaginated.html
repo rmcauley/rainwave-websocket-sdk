@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PongConfirm | Rainwave Websocket SDK - v1.0.2</title>
+	<title>AllGroupsPaginated | Rainwave Websocket SDK - v1.0.2</title>
 	<meta name="description" content="Documentation for Rainwave Websocket SDK - v1.0.2">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -53,13 +53,13 @@
 					<a href="../modules.html">Rainwave Websocket SDK - v1.0.2</a>
 				</li>
 				<li>
-					<a href="../modules/index.html">index</a>
+					<a href="../modules/types.html">types</a>
 				</li>
 				<li>
-					<a href="index.pongconfirm.html">PongConfirm</a>
+					<a href="types.allgroupspaginated.html">AllGroupsPaginated</a>
 				</li>
 			</ul>
-			<h1>Interface PongConfirm</h1>
+			<h1>Interface AllGroupsPaginated</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +70,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">PongConfirm</span>
+						<span class="target">AllGroupsPaginated</span>
 					</li>
 				</ul>
 			</section>
@@ -81,7 +81,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="index.pongconfirm.html#timestamp" class="tsd-kind-icon">timestamp</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="types.allgroupspaginated.html#data" class="tsd-kind-icon">data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="types.allgroupspaginated.html#has_next" class="tsd-kind-icon">has_<wbr>next</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="types.allgroupspaginated.html#next" class="tsd-kind-icon">next</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="types.allgroupspaginated.html#progress" class="tsd-kind-icon">progress</a></li>
 							</ul>
 						</section>
 					</div>
@@ -90,11 +93,47 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="timestamp" class="tsd-anchor"></a>
-					<h3>timestamp</h3>
-					<div class="tsd-signature tsd-kind-icon">timestamp<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="data" class="tsd-anchor"></a>
+					<h3>data</h3>
+					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">GroupInList</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="has_next" class="tsd-anchor"></a>
+					<h3>has_<wbr>next</h3>
+					<div class="tsd-signature tsd-kind-icon">has_<wbr>next<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>If true, there is still more data to load.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="next" class="tsd-anchor"></a>
+					<h3>next</h3>
+					<div class="tsd-signature tsd-kind-icon">next<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Pass this number as <code>after</code> argument to <code>all_groups_paginated</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="progress" class="tsd-anchor"></a>
+					<h3>progress</h3>
+					<div class="tsd-signature tsd-kind-icon">progress<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Number from <code>0</code> to <code>100</code> indicating loading percent.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -104,13 +143,13 @@
 					<li class=" ">
 						<a href="../modules.html">Modules</a>
 					</li>
-					<li class="current tsd-kind-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/index.html">index</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/responsetypes.html">response<wbr>Types</a>
 					</li>
-					<li class=" tsd-kind-module">
+					<li class="current tsd-kind-module">
 						<a href="../modules/types.html">types</a>
 					</li>
 				</ul>
@@ -120,10 +159,19 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="index.pongconfirm.html" class="tsd-kind-icon">Pong<wbr>Confirm</a>
+						<a href="types.allgroupspaginated.html" class="tsd-kind-icon">All<wbr>Groups<wbr>Paginated</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="index.pongconfirm.html#timestamp" class="tsd-kind-icon">timestamp</a>
+								<a href="types.allgroupspaginated.html#data" class="tsd-kind-icon">data</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="types.allgroupspaginated.html#has_next" class="tsd-kind-icon">has_<wbr>next</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="types.allgroupspaginated.html#next" class="tsd-kind-icon">next</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="types.allgroupspaginated.html#progress" class="tsd-kind-icon">progress</a>
 							</li>
 						</ul>
 					</li>
