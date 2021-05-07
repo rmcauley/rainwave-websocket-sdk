@@ -37,7 +37,7 @@ export interface RainwaveEvent {
   start: RainwaveTime;
   start_actual: RainwaveTime | null;
   end: RainwaveTime;
-  type: "Election" | "OneUpProducer" | "PVPElectionProducer";
+  type: "Election" | "OneUp" | "PVPElection";
   name: string | null;
   sid: Station;
   url: string | null;
