@@ -1,3 +1,6 @@
-import { Album } from "./album";
+import { AlbumInList } from "./allAlbumsPaginated";
 
-export type AlbumDiff = Omit<Album, "rating_user">[];
+export type AlbumDiff = Pick<
+  AlbumInList,
+  "id" | "cool" | "cool_lowest" | "newest_song_time"
+>[];

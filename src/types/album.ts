@@ -22,5 +22,4 @@ export interface Album {
   request_count: number;
   song_count: number;
   vote_count: number;
-  year: number | null;
 }
