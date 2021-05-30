@@ -5,6 +5,7 @@ import { Station } from "./station";
 import { RainwaveTime } from "./time";
 
 export interface SongOnAlbum extends SongBase {
+  /** When on All, this is the station that the song comes from. */
   origin_sid: Station;
   added_on: RainwaveTime;
   /** @internal */

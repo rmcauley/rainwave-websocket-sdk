@@ -26,6 +26,7 @@ export interface SearchSong extends Omit<SongBase, "albums" | "artists"> {
   album_name: Album["name"];
   cool_end: RainwaveTime;
   cool: boolean;
+  /** When on All, this is the station that the song comes from. */
   origin_sid: Station;
   requestable: boolean;
 }

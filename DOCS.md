@@ -1,16 +1,23 @@
-# Rainwave Websocket SDK
+# API Reference
 
-This SDK provides a typed interface to the public Rainwave Websocket API. It is currently only available in browser environments.
+- {@link Rainwave} for API calls and SDK functions
+- {@link RainwaveResponseTypes} for the return types of the API
+
+&nbsp;
+
+# SDK
+
+The SDK provides a typed interface to the public Rainwave Websocket API. It is currently only available in NodeJS environments.
 
 Once connected, the Rainwave SDK instance will emit events from the Rainwave Websocket.
 
-## Installation
+## SDK Installation
 
 ```
 npm i rainwave-websocket-sdk
 ```
 
-## Usage
+## SDK Usage
 
 Obtain your own API key and numeric User ID:
 
@@ -30,10 +37,13 @@ rw.on("sched_current", (current) => {
 await rw.startWebSocketSync();
 ```
 
-### Emitted Data Every Song Change
+### SDK Examples
 
-The following events are emitted by the API every song change as well as on connect, in
-line with the REST `info` API call.
+- [Write On Song Change](https://github.com/rmcauley/rainwave-write-on-song-change)
+
+### Emitted Data By API Every Song Change
+
+The following events are emitted by the API when you connect, and on every song change:
 
 - `user`: {@link types.User}
 - `album_diff`: {@link types.AlbumDiff}
@@ -42,7 +52,3 @@ line with the REST `info` API call.
 - `sched_next`: An array of {@link types.RainwaveEvent}
 - `sched_history`: An array of {@link types.RainwaveEvent}
 - `all_stations_info`: {@link types.AllStationsInfo}
-
-### Examples
-
-- [Write On Song Change](https://github.com/rmcauley/rainwave-write-on-song-change)

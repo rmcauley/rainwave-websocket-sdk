@@ -4,6 +4,7 @@ import { Station } from "./station";
 export interface Top100Song {
   album_name: Album["name"];
   id: SongBase["id"];
+  /** When on All, this is the station that the song comes from. */
   origin_sid: Station;
   song_rating: SongBase["rating"];
   song_rating_count: number;

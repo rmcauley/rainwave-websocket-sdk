@@ -13,7 +13,7 @@ export interface AllArtistsPaginated {
    */
   has_next: boolean;
   /**
-   * Pass this number as `after` argument to `all_Artists_paginated`.
+   * Pass this number as `after` argument to `all_artists_paginated`.
    */
   next: number;
   /**

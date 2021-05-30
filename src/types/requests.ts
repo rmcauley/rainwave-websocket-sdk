@@ -24,6 +24,7 @@ export interface Request extends SongBase {
   /** Does the song still exist on the Rainwave? */
   good: boolean;
   order: number;
+  /** When on All, this is the station that the song comes from. */
   origin_sid: Station;
   request_id: number;
   sid: Station;

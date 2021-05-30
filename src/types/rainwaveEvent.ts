@@ -24,6 +24,7 @@ export interface RainwaveEventSong extends SongBase {
   entry_type: ElectionSongType;
   entry_votes: number;
   groups: SongGroup[];
+  /** When on All, this is the station that the song comes from. */
   origin_sid: Station;
   rating_allowed: boolean;
   rating_count: number;

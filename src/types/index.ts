@@ -64,7 +64,7 @@ import { VoteResult } from "./voteResult";
 import { RatingUser, ValidatedSongRatingUser } from "./ratingUser";
 import { RainwavePagedParams } from "./rainwavePagedParams";
 import { AllSongsRequestParams } from "./allSongsRequestParams";
-import { AllArtistsPaginated } from "./allArtistsPaginated";
+import { AllArtistsPaginated, ArtistInList } from "./allArtistsPaginated";
 import { AllGroupsPaginated } from "./allGroupsPaginated";
 
 export {
@@ -82,6 +82,7 @@ export {
   AlreadyVotedEntry,
   ApiInfo,
   Artist,
+  ArtistInList,
   ArtistWithSongs,
   BooleanResult,
   ElecBlockedBy,

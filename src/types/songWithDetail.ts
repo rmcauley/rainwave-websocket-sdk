@@ -24,6 +24,7 @@ export interface SongWithDetail extends SongBase {
   elec_blocked_by: ElecBlockedBy;
   elec_blocked: boolean;
   groups: SongGroup[];
+  /** When on All, this is the station that the song comes from. */
   origin_sid: Station;
   rating_allowed: boolean;
   rating_count: number;
