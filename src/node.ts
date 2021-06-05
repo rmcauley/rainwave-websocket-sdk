@@ -10,7 +10,9 @@ type RainwaveNode = RainwaveCore<
   WebSocket
 >;
 
-function rainwaveNodeFactory(options: RainwaveOptions): RainwaveNode {
+function rainwaveNodeFactory(
+  options: RainwaveOptions<WebSocket.ErrorEvent>
+): RainwaveNode {
   const rw: RainwaveNode = new RainwaveCore(
     (url) => new WebSocket(url),
     (message: unknown) => (message as MessageEvent<WebSocket.Data>).data.toString(),

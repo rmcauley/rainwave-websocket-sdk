@@ -30,16 +30,16 @@ interface WebsocketAbstraction<MESSAGEEVENT, ERROREVENT, CLOSEEVENT, OPENEVENT> 
   CLOSED: number;
 }
 
-type OnSocketErrorType = (event: unknown) => void;
+type OnSocketErrorType<ERROREVENT> = (event: ERROREVENT) => void;
 
-interface RainwaveOptions {
+interface RainwaveOptions<ERROREVENT> {
   userId: number;
   apiKey: string;
   sid: Station;
   /** @defaultValue "wss://rainwave.cc/api4/websocket/" */
   url?: string;
   debug?: (msg: string | Error) => void;
-  onSocketError?: OnSocketErrorType;
+  onSocketError?: OnSocketErrorType<ERROREVENT>;
 }
 
 class RainwaveCore<
@@ -54,7 +54,7 @@ class RainwaveCore<
   private _sid: Station;
   private _url: string;
   private _debug: (msg: string) => void;
-  private _externalOnSocketError: OnSocketErrorType;
+  private _externalOnSocketError: OnSocketErrorType<ERROREVENT>;
   private _socketFactory: (url: string) => WEBSOCKET;
   private _processMessage: (message: unknown) => string;
   private _socket?: WEBSOCKET;
@@ -74,7 +74,7 @@ class RainwaveCore<
   constructor(
     socketFactory: (url: string) => WEBSOCKET,
     processMessage: (message: unknown) => string,
-    options: RainwaveOptions
+    options: RainwaveOptions<ERROREVENT>
   ) {
     super();
 

@@ -47,7 +47,7 @@ type RainwaveWeb = RainwaveCore<
   RainwaveWebSocket
 >;
 
-function rainwaveWebFactory(options: RainwaveOptions): RainwaveWeb {
+function rainwaveWebFactory(options: RainwaveOptions<Event>): RainwaveWeb {
   const rw: RainwaveWeb = new RainwaveCore(
     (url) => new RainwaveWebSocket(url),
     (message) => (message as MessageEvent).data as string,
