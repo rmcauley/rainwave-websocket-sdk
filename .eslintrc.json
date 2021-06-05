@@ -33,7 +33,7 @@
       },
       {
         "selector": "classProperty",
-        "format": ["camelCase", "snake_case"],
+        "format": ["camelCase", "snake_case", "UPPER_CASE"],
         "leadingUnderscore": "allow"
       },
       {

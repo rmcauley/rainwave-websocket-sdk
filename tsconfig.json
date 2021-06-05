@@ -21,7 +21,12 @@
     "categoryOrder": ["Connection", "Event Handling", "*", "API Request"],
     "defaultCategory": "API Request",
     "disableSources": true,
-    "entryPoints": ["src/index.ts", "src/responseTypes.ts", "src/types/index.ts"],
+    "entryPoints": [
+      "src/node.ts",
+      "src/responseTypes.ts",
+      "src/types/index.ts",
+      "src/web.ts"
+    ],
     "excludeExternals": true,
     "excludePrivate": true,
     "excludeProtected": true,

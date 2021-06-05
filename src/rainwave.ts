@@ -1,4 +1,3 @@
-import WebSocket from "ws";
 import {
   RainwaveError,
   RainwaveSDKDisconnectedError,
@@ -18,20 +17,47 @@ const STATELESS_REQUESTS = ["ping", "pong"];
 const MAX_QUEUED_REQUESTS = 10;
 const SINGLE_REQUEST_TIMEOUT = 4000;
 
-type ErrorEvent = WebSocket.ErrorEvent;
-type CloseEvent = WebSocket.CloseEvent;
-type MessageEvent = WebSocket.MessageEvent;
+interface WebsocketAbstraction<MESSAGEEVENT, ERROREVENT, CLOSEEVENT, OPENEVENT> {
+  close: () => void;
+  onmessage: (event: MESSAGEEVENT) => void;
+  onerror: (event: ERROREVENT) => void;
+  onopen: (event: OPENEVENT) => void;
+  onclose: (event: CLOSEEVENT) => void;
+  send: (message: string) => void;
+  readyState: number;
+  OPEN: number;
+  CLOSING: number;
+  CLOSED: number;
+}
 
-type OnSocketErrorType = (event: ErrorEvent) => void;
+type OnSocketErrorType = (event: unknown) => void;
 
-class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
+interface RainwaveOptions {
+  userId: number;
+  apiKey: string;
+  sid: Station;
+  /** @defaultValue "wss://rainwave.cc/api4/websocket/" */
+  url?: string;
+  debug?: (msg: string | Error) => void;
+  onSocketError?: OnSocketErrorType;
+}
+
+class RainwaveCore<
+  MESSAGEEVENT,
+  ERROREVENT,
+  CLOSEEVENT,
+  OPENEVENT,
+  WEBSOCKET extends WebsocketAbstraction<MESSAGEEVENT, ERROREVENT, CLOSEEVENT, OPENEVENT>
+> extends RainwaveEventListener<RainwaveResponseTypes> {
   private _userId: number;
   private _apiKey: string;
   private _sid: Station;
   private _url: string;
   private _debug: (msg: string) => void;
   private _externalOnSocketError: OnSocketErrorType;
-  private _socket?: WebSocket;
+  private _socketFactory: (url: string) => WEBSOCKET;
+  private _processMessage: (message: unknown) => string;
+  private _socket?: WEBSOCKET;
   private _isOk?: boolean = false;
   private _socketTimeoutTimer: number | null = null;
   private _pingInterval: number | null = null;
@@ -45,17 +71,15 @@ class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
   private _requestQueue: RainwaveRequest<keyof RainwaveRequests>[] = [];
   private _sentRequests: RainwaveRequest<keyof RainwaveRequests>[] = [];
 
-  constructor(options: {
-    userId: number;
-    apiKey: string;
-    sid: Station;
-    /** @defaultValue "wss://rainwave.cc/api4/websocket/" */
-    url?: string;
-    debug?: (msg: string | Error) => void;
-    onSocketError?: OnSocketErrorType;
-  }) {
+  constructor(
+    socketFactory: (url: string) => WEBSOCKET,
+    processMessage: (message: unknown) => string,
+    options: RainwaveOptions
+  ) {
     super();
 
+    this._socketFactory = socketFactory;
+    this._processMessage = processMessage;
     this._userId = options.userId;
     this._apiKey = options.apiKey;
     this._sid = options.sid;
@@ -84,7 +108,7 @@ class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
    * @category Connection
    */
   public startWebSocketSync(): Promise<boolean> {
-    if (this._socket?.readyState === WebSocket.OPEN) {
+    if (this._socket && this._socket.readyState === this._socket.OPEN) {
       return Promise.resolve(true);
     }
 
@@ -92,7 +116,7 @@ class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
       clearTimeout(this._socketTimeoutTimer);
     }
 
-    const socket = new WebSocket(`${this._url}${this._sid}`);
+    const socket = this._socketFactory(`${this._url}${this._sid}`);
     socket.onmessage = this._onMessage.bind(this);
     socket.onclose = this._onSocketClose.bind(this);
     socket.onerror = this._onSocketError.bind(this);
@@ -113,8 +137,8 @@ class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
   public stopWebSocketSync(): Promise<void> {
     if (
       !this._socket ||
-      this._socket.readyState === WebSocket.CLOSING ||
-      this._socket.readyState === WebSocket.CLOSED
+      this._socket.readyState === this._socket.CLOSING ||
+      this._socket.readyState === this._socket.CLOSED
     ) {
       return Promise.resolve();
     }
@@ -127,7 +151,7 @@ class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     });
   }
 
-  private _cleanVariablesOnClose(event?: CloseEvent | ErrorEvent): void {
+  private _cleanVariablesOnClose(event?: CLOSEEVENT | ERROREVENT): void {
     if (event) {
       this._debug(JSON.stringify(Object.keys(event)));
     }
@@ -151,7 +175,7 @@ class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     this._sentRequests = [];
   }
 
-  private _onSocketClose(event: CloseEvent): void {
+  private _onSocketClose(event: CLOSEEVENT): void {
     const staysClosed = this._socketStaysClosed || !!this._authPromiseReject;
     this._cleanVariablesOnClose(event);
     if (staysClosed) {
@@ -164,7 +188,7 @@ class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
     }, DEFAULT_RECONNECT_TIMEOUT);
   }
 
-  private _onSocketError(event: ErrorEvent): void {
+  private _onSocketError(event: ERROREVENT): void {
     this.emit("error", { code: 0, tl_key: "sync_retrying", text: "" });
     this._externalOnSocketError(event);
     this._socket?.close();
@@ -266,7 +290,7 @@ class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
 
   // Data From API *****************************************************************************************
 
-  private _onMessage(message: MessageEvent): void {
+  private _onMessage(message: MESSAGEEVENT): void {
     this.emit("sdk_error_clear", { tl_key: "sync_retrying" });
     if (this._socketTimeoutTimer) {
       clearTimeout(this._socketTimeoutTimer);
@@ -275,7 +299,7 @@ class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
 
     let json: Partial<RainwaveResponseTypes>;
     try {
-      json = JSON.parse(message.data.toString()) as Partial<RainwaveResponseTypes>;
+      json = JSON.parse(this._processMessage(message)) as Partial<RainwaveResponseTypes>;
     } catch (error) {
       this._debug(JSON.stringify(message));
       this._debug(error);
@@ -1197,4 +1221,4 @@ class Rainwave extends RainwaveEventListener<RainwaveResponseTypes> {
   }
 }
 
-export { Rainwave };
+export { RainwaveCore, RainwaveOptions };

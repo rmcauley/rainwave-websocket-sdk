@@ -1,5 +1,5 @@
 import { RainwaveError } from "./errors";
-import { Rainwave } from "./index";
+import { RainwaveNodeSDK } from "./node";
 import { Station } from "./types";
 
 const userId = process.env.RWSDK_TEST_USER_ID
@@ -9,7 +9,7 @@ const apiKey = process.env.RWSDK_TEST_API_KEY || "";
 
 describe("Rainwave SDK Connectivity", () => {
   test("resolves a promise on connection success", async () => {
-    const rw = new Rainwave({
+    const rw = RainwaveNodeSDK({
       userId,
       apiKey,
       sid: Station.all,
@@ -21,7 +21,7 @@ describe("Rainwave SDK Connectivity", () => {
 
   test("rejects a promise on connection failure", () => {
     expect.assertions(1);
-    const rw = new Rainwave({
+    const rw = RainwaveNodeSDK({
       userId,
       apiKey: apiKey + "aaaaaa",
       sid: Station.all,
@@ -36,7 +36,7 @@ describe("Rainwave SDK Connectivity", () => {
 });
 
 describe("Error Handling", () => {
-  const rw = new Rainwave({
+  const rw = RainwaveNodeSDK({
     userId,
     apiKey,
     sid: Station.all,
@@ -64,11 +64,10 @@ describe("Error Handling", () => {
 describe("Event Listening", () => {
   test("emits sched_current after websocket connect", async (done) => {
     expect.assertions(1);
-    const rw = new Rainwave({
+    const rw = RainwaveNodeSDK({
       userId,
       apiKey,
       sid: Station.all,
-      debug: (msg) => console.log(msg),
     });
     rw.on("sched_current", async (data) => {
       expect(data).toBeDefined();
@@ -88,7 +87,7 @@ describe("Rainwave SDK API Calls", () => {
   const SUBURBAN_MUSEUM_SONG_ID = 4804;
   const KOSHIRO_ARTIST_ID = 9140;
 
-  const rw = new Rainwave({
+  const rw = RainwaveNodeSDK({
     userId,
     apiKey,
     sid: Station.all,

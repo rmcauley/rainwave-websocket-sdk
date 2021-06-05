@@ -1,13 +1,13 @@
 # API Reference
 
-- {@link Rainwave} for API calls and SDK functions
+- {@link RainwaveCore} for API calls and SDK functions
 - {@link RainwaveResponseTypes} for the return types of the API
 
 &nbsp;
 
 # SDK
 
-The SDK provides a typed interface to the public Rainwave Websocket API. It is currently only available in NodeJS environments.
+The SDK provides a typed interface to the public Rainwave Websocket API.
 
 Once connected, the Rainwave SDK instance will emit events from the Rainwave Websocket.
 
@@ -17,16 +17,20 @@ Once connected, the Rainwave SDK instance will emit events from the Rainwave Web
 npm i rainwave-websocket-sdk
 ```
 
-## SDK Usage
+## Obtaining Your API Key from Rainwave
 
-Obtain your own API key and numeric User ID:
+Obtain your own API key and numeric User ID from here to use in the SDK:
 
 - [https://rainwave.cc/keys/](https://rainwave.cc/keys/)
 
-Use them with the SDK:
+## SDK Usage In Node
+
+Use the `rainwave/node` entry point to include the WebSockets library:
 
 ```typescript
-const rw = new Rainwave({
+import { RainwaveNodeSDK, Station } from "rainwave/node";
+
+const rw = RainwaveNodeSDK({
   apiKey: "aaaaaaaaa",
   userId: 2,
   sid: Station.game,
@@ -35,6 +39,24 @@ rw.on("sched_current", (current) => {
   console.log(`${current.songs[0].albums[0].name} - ${current.songs[0].title}`);
 });
 await rw.startWebSocketSync();
+```
+
+## SDK Usage In Web Browsers
+
+Using the `rainwave/web` entry point will omit the Node `websockets` library from your bundle:
+
+```typescript
+import { RainwaveWebSDK, Station } from "rainwave/web";
+
+const rw = RainwaveWebSDK({
+  apiKey: "aaaaaaaaa",
+  userId: 2,
+  sid: Station.game,
+});
+rw.on("sched_current", (current) => {
+  console.log(`${current.songs[0].albums[0].name} - ${current.songs[0].title}`);
+});
+rw.startWebSocketSync();
 ```
 
 ### SDK Examples
