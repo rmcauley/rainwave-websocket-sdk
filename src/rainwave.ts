@@ -36,7 +36,7 @@ interface RainwaveOptions<ERROREVENT> {
   userId: number;
   apiKey: string;
   sid: Station;
-  /** @defaultValue "wss://rainwave.cc/api4/websocket/" */
+  /** @defaultValue "wss://core.rainwave.cc/api4/websocket/" */
   url?: string;
   debug?: (msg: string | Error) => void;
   onSocketError?: OnSocketErrorType<ERROREVENT>;
@@ -83,7 +83,7 @@ class RainwaveCore<
     this._userId = options.userId;
     this._apiKey = options.apiKey;
     this._sid = options.sid;
-    this._url = options.url || "wss://rainwave.cc/api4/websocket/";
+    this._url = options.url || "wss://core.rainwave.cc/api4/websocket/";
     this._debug = options?.debug || ((): void => {});
     this._externalOnSocketError = options?.onSocketError || ((): void => {});
 
